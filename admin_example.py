@@ -1,4 +1,4 @@
-from x_rand import x_rand, x_rand_admin
+from x_rand import x_rand_admin
 
 e1=[
     ['a','b'],
@@ -34,4 +34,4 @@ def randomization_process(x, aid):
         'e3': x.fingerprint(e3, n_out=3),
     }
 
-print(x_rand_admin().recreate(randomization_process, [1]))
+print(x_rand_admin().recreate(randomization_process, aids=['staff','0123456789abcdef','0123456789abcde0']))
