@@ -57,13 +57,14 @@ pip install x_rand
 <script type="text/python">
 <![CDATA[
 
-x=x_rand()
 data=[
   ['a','b'],
   [1,2],
   [2,4]
 ]
+
 globalize=lambda x: globals().update(x)
+x=x_rand()
 globalize(x.select_random(data))
 
 ]]>
@@ -119,13 +120,12 @@ globalize(x.select_random(data))
   > NameError: name 'text_04' is not defined
   ```
 
-5) These can be called into edX scripts as `$correct_XX` and `$text__XX` respectively. An example `Blank Advanced Problem` script is below:
+5) These can be called into edX scripts as `$text_XX` and `$correct__XX` respectively. Similarly, all columns added can be called as `mycol_XX`. An example `Blank Advanced Problem` script is below:
 ```
 <problem>
 <script type="text/python">
 <![CDATA[
 
-x=x_rand()
 data= [
     ["text", "correct"],
     ["A", "True"],
@@ -137,7 +137,7 @@ data= [
 ]
 
 globalize=lambda x: globals().update(x)
-
+x=x_rand()
 globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_out=4))
 
 ]]>
