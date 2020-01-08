@@ -52,4 +52,4 @@ class x_rand_admin:
 
     def recreate(self, functor, aids):
         x=x_rand()
-        return [self.extended_functor(functor, x, aid) for aid in aids]
+        return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]
