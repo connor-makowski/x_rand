@@ -36,7 +36,7 @@ pip install x_rand
   ]
   ```
 
-3) To use the variables in edX problems, you have to make the create relevant variables and make them global:
+3) To use the variables in edX problems, you have to create relevant variables and make them global:
     - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
     - Then randomly select a row out of that data
   ```
@@ -99,7 +99,7 @@ globalize(x.select_random(data))
     ["4", "False"]
   ]
   ```
-3) To use the variables in edX problems, you have to make the create relevant variables and make them global:
+3) To use the variables in edX problems, you have to create relevant variables and make them global:
     - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
   Randomly select four (`n_total=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
   ```
@@ -153,6 +153,96 @@ globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=
 <choice correct="False">None of the above</choice>
 </checkboxgroup>
 </choiceresponse>
+</problem>
+```
+
+### Example Fingerprinting problem
+This can be used to identify students that post exam problems to outside websites.
+
+While not guaranteed to be unique, large enough lists with sufficient numbers of selected values can almost guarantee a unique result per student.
+
+To fingerprint a problem.
+1) Initialize an `x_rand` variable:
+  ```
+  x=x_rand()
+  ```
+
+2) Input data:
+  ```
+  females = [
+      ["female"],
+      ["Jenny"],
+      ["Carla"],
+      ["Mary"],
+      ["Jin"],
+      ["Marta"],
+      ["Sadef"]
+  ]
+  males = [
+      ["male"],
+      ["Carter"],
+      ["John"],
+      ["Jose"],
+      ["Luke"],
+      ["Adam"],
+      ["Ahmed"]
+  ]
+  ```
+3) To use the variables in edX problems, you have to make the create relevant variables and make them global:
+    - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  Randomly select and shuffle four (`n_total=4`) female names and four (`n_total=4`) male names:
+  ```
+  globalize=lambda x: globals().update(x)
+  globalize(x.fingerprint(females, n_total=4))
+  globalize(x.fingerprint(males, n_total=4))
+  ```
+  - Note: You can now call each of your column headers in the order in which they were randomly selected from `00` to `n_total-1`:
+  ```
+  print (female_00, male_03)
+  > Jenny Carter
+  ```
+
+5) These can be called into edX scripts as `$female_XX` and `$male_XX` respectively. Similarly, all columns added can be called as `mycol_XX`. An example `Blank Advanced Problem` script is below:
+```
+<problem>
+ <script type="text/python">
+<![CDATA[
+
+females = [
+    ["female"],
+    ["Jenny"],
+    ["Carla"],
+    ["Mary"],
+    ["Jin"],
+    ["Marta"],
+    ["Sadef"]
+]
+
+males = [
+    ["male"],
+    ["Carter"],
+    ["John"],
+    ["Jose"],
+    ["Luke"],
+    ["Adam"],
+    ["Ahmed"]
+]
+
+globalize=lambda x: globals().update(x)
+x=x_rand()
+globalize(x.fingerprint(females, n_total=4))
+globalize(x.fingerprint(males, n_total=4))
+
+]]>
+</script>
+<multiplechoiceresponse>
+<label>$female_00, $female_01, $female_02, $female_03, $male_00, $male_01, $male_02 and $male_03 all walk into a bar. One of them should have seen it.<br/>Is this a funny joke?</label>
+<description>Select a response below</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">No</choice>
+    <choice correct="true">Yes</choice>
+  </choicegroup>
+</multiplechoiceresponse>
 </problem>
 ```
 
