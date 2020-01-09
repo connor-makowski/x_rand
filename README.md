@@ -101,12 +101,12 @@ globalize(x.select_random(data))
   ```
 3) To use the variables in edX problems, you have to make the create relevant variables and make them global:
     - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
-  Randomly select four (`n_out=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
+  Randomly select four (`n_total=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
   ```
   globalize=lambda x: globals().update(x)
-  globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_out=4))
+  globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
   ```
-  - Note: You can now call each of your column headers in the order in which they were randomly selected from `00` to `n_out-1`:
+  - Note: You can now call each of your column headers in the order in which they were randomly selected from `00` to `n_total-1`:
   ```
   print (text_00, correct_00)
   > 2, False
@@ -138,7 +138,7 @@ data= [
 
 globalize=lambda x: globals().update(x)
 x=x_rand()
-globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_out=4))
+globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
 
 ]]>
 </script>
