@@ -31,7 +31,7 @@ def randomization_process(x, aid):
         'aid': aid,
         'e1': x.select_random(e1),
         'e2': x.choices_random(e2, correct_indicator='correct'),
-        'e3': x.fingerprint(e3, n_out=3),
+        'e3': x.fingerprint(e3, n_total=3),
     }
 
 print(x_rand_admin().recreate(randomization_process, aids=['staff','0123456789abcdef','0123456789abcde0']))

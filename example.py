@@ -85,7 +85,7 @@ globalize=lambda x: globals().update(x)
 
 globalize(x.select_random(e1))
 globalize(x.choices_random(e2, correct_indicator='correct'))
-globalize(x.fingerprint(e3, n_out=3))
+globalize(x.fingerprint(e3, n_total=3))
 print(a, b)
 print (text_00, correct_00)
 print (text_01, correct_01)
