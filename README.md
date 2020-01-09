@@ -188,8 +188,8 @@ To fingerprint a problem.
       ["Ahmed"]
   ]
   ```
-3) To use the variables in edX problems, you have to make the create relevant variables and make them global:
-    - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+3) To use the variables in edX problems, you have to create relevant variables and make them global:
+    - To do this, use a simple `globalize` function `globalize=lambda x: globals().update(x)`
   Randomly select and shuffle four (`n_total=4`) female names and four (`n_total=4`) male names:
   ```
   globalize=lambda x: globals().update(x)
