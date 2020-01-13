@@ -1,6 +1,7 @@
+import sys
 # For python 3
-try:
+if sys.version_info[0] == 3:
     from x_rand.x_rand import x_rand, x_rand_admin
 # For python 2
-except:
+elif sys.version_info[0] < 3:
     from x_rand import x_rand, x_rand_admin
