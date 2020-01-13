@@ -133,19 +133,22 @@ class x_rand_admin:
     def recreate(self, functor, aids):
         """
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
+        Requires:
+            - `functor` should be a function of any name that takes in two args of any name where:
+                - the first arg represents an x_rand instnace to be used for recreating data
+                - the second arg represents an anonymous_student_id to store
+                and returns a dictionary of relevant output to be stored in a list and returned
+                by this `recreate` function
+                - Note: Order of randomization is important because of how random seeds
+                    - It must match the randomization order as it was coded in edX
+            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
 
-        `functor` should be a function of any name that takes in two args of any name where:
-            - the first arg represents an x_rand instnace to be used for recreating data
-            - the second arg represents an anonymous_student_id to store
-            and returns a dictionary of relevant output to be stored in a list and returned
-            by this `recreate` function
-            - Note: Order of randomization is important because of how random seeds
-                - It must match the randomization order as it was coded in edX
+        Example:
 
-        `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+        ```
+        # DATA HERE
 
-        EG:
-
+        # Functor
         def randomization_process(x, aid):
             return {
                 'aid': aid,
@@ -154,6 +157,10 @@ class x_rand_admin:
                 'e3': x.fingerprint(e3, n_total=3),
             }
 
+        aids=['staff','0123456789abcdef','0123456789abcde0']
+        output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+        ```
         """
         x=x_rand()
         return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]
