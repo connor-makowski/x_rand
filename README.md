@@ -37,8 +37,8 @@ pip install x_rand
   ```
 
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-    - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
-    - Then randomly select a row out of that data
+  - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - Then randomly select a row out of that data
   ```
   globalize=lambda x: globals().update(x)
   globalize(x.select_random(data))
@@ -100,8 +100,8 @@ globalize(x.select_random(data))
   ]
   ```
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-    - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
-  Randomly select four (`n_total=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
+  - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - Randomly select four (`n_total=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
   ```
   globalize=lambda x: globals().update(x)
   globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
@@ -189,8 +189,8 @@ To fingerprint a problem.
   ]
   ```
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-    - To do this, use a simple `globalize` function `globalize=lambda x: globals().update(x)`
-  Randomly select and shuffle four (`n_total=4`) female names and four (`n_total=4`) male names:
+  - To do this, use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - Randomly select and shuffle four (`n_total=4`) female names and four (`n_total=4`) male names:
   ```
   globalize=lambda x: globals().update(x)
   globalize(x.fingerprint(females, n_total=4))
