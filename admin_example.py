@@ -34,4 +34,8 @@ def randomization_process(x, aid):
         'e3': x.fingerprint(e3, n_total=3),
     }
 
-print(x_rand_admin().recreate(randomization_process, aids=['staff','0123456789abcdef','0123456789abcde0']))
+aids=['staff','0123456789abcdef','0123456789abcde0']
+
+output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+print(output)
