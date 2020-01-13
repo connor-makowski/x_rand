@@ -122,7 +122,6 @@ class x_rand:
         choices=random.sample(input, n_total)
         return self.shuffle_and_stack_dicts_numerically(choices)
 
-
 class x_rand_admin:
     def extended_functor(self, functor, x, aid):
         """
