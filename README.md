@@ -10,12 +10,19 @@ Randomization package for [edX] courses
 
 ## Setup
 
-Make sure you have Python 3.6.x (or higher) or Python2.7.x (or higher) installed on your system. You can download it from [python].
+Make sure you have Python 3.6.x (or higher) installed on your system. You can download it from [python].
 
 <br/><hr/>
 
-### Installation
+## API Documentation
+The [full documenation]("") can be found [here]("").
 
+### Installation For use in edX
+Upload the `python_lib.zip` file to your edX course.
+  - WARNING: This will overwrite your current `python_lib.zip` if you already have it.
+  - NOTE: If you already have a `python_lib.zip`, you can add the x_rand.py file from `python_lib` directly to your `python_lib` folder, re-zip it and re-upload it.
+
+### Installation For testing and admin use
 ```
 pip install x_rand
 ```
@@ -51,11 +58,12 @@ pip install x_rand
   > 2
   ```
 
-5) These can be called into edX scripts as `$a` and `$b` respectively. An example `Blank Advanced Problem` script is below:
+4) These can be called into edX scripts as `$a` and `$b` respectively. An example `Blank Advanced Problem` script is below:
 ```
 <problem>
 <script type="text/python">
 <![CDATA[
+from python_lib.x_rand import x_rand
 
 data=[
   ['a','b'],
@@ -125,6 +133,7 @@ globalize(x.select_random(data))
 <problem>
 <script type="text/python">
 <![CDATA[
+from python_lib.x_rand import x_rand
 
 data= [
     ["text", "correct"],
