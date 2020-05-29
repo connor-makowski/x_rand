@@ -15,7 +15,7 @@ Make sure you have Python 3.6.x (or higher) installed on your system. You can do
 <br/><hr/>
 
 ## API Documentation
-The [full documenation]("") can be found [here]("").
+The [full documenation]("https://connor-makowski.github.io/x_rand/x_rand.m.html") can be found [here]("https://connor-makowski.github.io/x_rand/x_rand.m.html").
 
 ### Installation For use in edX
 Upload the `python_lib.zip` file to your edX course.
