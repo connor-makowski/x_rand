@@ -1,7 +1,8 @@
 import random
-class x_rand:
+
+class utils:
     """
-    Randomization class with functions to enable randomization in edX
+    Utilities to support the main x_rand functions
     """
     def __init__(self):
         """
@@ -63,13 +64,6 @@ class x_rand:
         else:
             return input
 
-    def select_random(self, input):
-        """
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
-        """
-        input=self.formatter(input)
-        return random.choice(input)
-
     def sample_if(self, input, variable, string, sample_size):
         """
         Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
@@ -98,6 +92,17 @@ class x_rand:
         """
         random.shuffle(dict_list) # Note: Random shuffle happens in place
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+class x_rand(utils):
+    """
+    Randomization class with functions to enable randomization in edX
+    """
+    def select_random(self, input):
+        """
+        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        """
+        input=self.formatter(input)
+        return random.choice(input)
 
     def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
         """

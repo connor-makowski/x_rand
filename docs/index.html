@@ -993,7 +993,11 @@ table {
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand', this);">Show source &equiv;</a></p>
   <div id="source-x_rand" class="source">
-    <pre><code>from x_rand.x_rand import *
+    <pre><code>import sys
+if sys.version_info[0] == 3:
+    from x_rand.x_rand import x_rand, x_rand_admin
+elif sys.version_info[0] < 3:
+    from x_rand import x_rand, x_rand_admin
 </code></pre>
   </div>
 

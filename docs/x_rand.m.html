@@ -974,6 +974,19 @@ table {
     <li class="set"><h3><a href="#header-classes">Classes</a></h3>
       <ul>
         <li class="mono">
+        <span class="class_name"><a href="#x_rand.x_rand.utils">utils</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#x_rand.x_rand.utils.__init__">__init__</a></li>
+    <li class="mono"><a href="#x_rand.x_rand.utils.formatter">formatter</a></li>
+    <li class="mono"><a href="#x_rand.x_rand.utils.reseed">reseed</a></li>
+    <li class="mono"><a href="#x_rand.x_rand.utils.sample_if">sample_if</a></li>
+    <li class="mono"><a href="#x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">shuffle_and_stack_dicts_numerically</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
         <span class="class_name"><a href="#x_rand.x_rand.x_rand">x_rand</a></span>
         
           
@@ -1019,9 +1032,10 @@ table {
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand', this);">Show source &equiv;</a></p>
   <div id="source-x_rand.x_rand" class="source">
     <pre><code>import random
-class x_rand:
+
+class utils:
     """
-    Randomization class with functions to enable randomization in edX
+    Utilities to support the main x_rand functions
     """
     def __init__(self):
         """
@@ -1083,13 +1097,6 @@ class x_rand:
         else:
             return input
 
-    def select_random(self, input):
-        """
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
-        """
-        input=self.formatter(input)
-        return random.choice(input)
-
     def sample_if(self, input, variable, string, sample_size):
         """
         Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
@@ -1118,6 +1125,17 @@ class x_rand:
         """
         random.shuffle(dict_list) # Note: Random shuffle happens in place
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+class x_rand(utils):
+    """
+    Randomization class with functions to enable randomization in edX
+    """
+    def select_random(self, input):
+        """
+        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        """
+        input=self.formatter(input)
+        return random.choice(input)
 
     def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
         """
@@ -1195,16 +1213,16 @@ class x_rand_admin:
     <h2 class="section-title" id="header-classes">Classes</h2>
       
       <div class="item">
-      <p id="x_rand.x_rand.x_rand" class="name">class <span class="ident">x_rand</span></p>
+      <p id="x_rand.x_rand.utils" class="name">class <span class="ident">utils</span></p>
       
   
-    <div class="desc"><p>Randomization class with functions to enable randomization in edX</p></div>
+    <div class="desc"><p>Utilities to support the main x_rand functions</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.x_rand', this);">Show source &equiv;</a></p>
-  <div id="source-x_rand.x_rand.x_rand" class="source">
-    <pre><code>class x_rand:
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils" class="source">
+    <pre><code>class utils:
     """
-    Randomization class with functions to enable randomization in edX
+    Utilities to support the main x_rand functions
     """
     def __init__(self):
         """
@@ -1266,13 +1284,6 @@ class x_rand_admin:
         else:
             return input
 
-    def select_random(self, input):
-        """
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
-        """
-        input=self.formatter(input)
-        return random.choice(input)
-
     def sample_if(self, input, variable, string, sample_size):
         """
         Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
@@ -1301,6 +1312,248 @@ class x_rand_admin:
         """
         random.shuffle(dict_list) # Note: Random shuffle happens in place
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#x_rand.x_rand.utils">utils</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="x_rand.x_rand.utils.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils.__init__" class="source">
+    <pre><code>def __init__(self):
+    """
+    Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+    If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+    """
+    try:
+        randomseed = int(anonymous_student_id, 16)
+    except:
+        randomseed = 1
+    random.seed(randomseed)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="x_rand.x_rand.utils.formatter">
+    <p>def <span class="ident">formatter</span>(</p><p>self, input)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+Checks if the first element of a data set is a list or a tuple and if so, converts it
+to a list of dictionaries that use the headers in the first row as assigned values</p>
+<p>The following inputs give equivalent outputs:</p>
+<p>e1=[
+['a','b'],
+[1,2],
+[3,4]
+]</p>
+<p>e1=(
+('a','b'),
+(1,2),
+(3,4)
+)</p>
+<p>e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]</p>
+<p>All of the above examples are returned as:
+e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils.formatter', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils.formatter" class="source">
+    <pre><code>def formatter(self, input):
+    """
+    Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+    Checks if the first element of a data set is a list or a tuple and if so, converts it
+    to a list of dictionaries that use the headers in the first row as assigned values
+    The following inputs give equivalent outputs:
+    e1=[
+    ['a','b'],
+    [1,2],
+    [3,4]
+    ]
+    e1=(
+    ('a','b'),
+    (1,2),
+    (3,4)
+    )
+    e1=[
+    {'a':1, 'b':2},
+    {'a':3, 'b':4}
+    ]
+    All of the above examples are returned as:
+    e1=[
+    {'a':1, 'b':2},
+    {'a':3, 'b':4}
+    ]
+    """
+    # Note: __builtins__(py3) and __builtin__(py2) not accessable in edX
+    # Possible errors if users create variable named `list` or `tuple`
+    # Ideal: if isinstance(input[0], (__builtins__.list, __builtins__.tuple)):
+    if isinstance(input[0], (list, tuple)):
+        return [dict(zip(input[0],row)) for row in input[1:]]
+    else:
+        return input
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="x_rand.x_rand.utils.reseed">
+    <p>def <span class="ident">reseed</span>(</p><p>self, anonymous_student_id=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Reseed the random seed to a specific value (used to recreate student data sets)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils.reseed', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils.reseed" class="source">
+    <pre><code>def reseed(self, anonymous_student_id=None):
+    """
+    Reseed the random seed to a specific value (used to recreate student data sets)
+    """
+    try:
+        randomseed = int(anonymous_student_id, 16)
+    except:
+        randomseed = 1
+    random.seed(randomseed)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="x_rand.x_rand.utils.sample_if">
+    <p>def <span class="ident">sample_if</span>(</p><p>self, input, variable, string, sample_size)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns <code>sample_size</code> items from a subset of <code>input</code> items where a <code>string</code> is contained in a given <code>variable</code>
+Takes in
+- input: (as specified by self.formatter)
+- variable: type:string - variable name to check for existence of <code>string</code>
+- string: type:string - string to check if exists in <code>variable</code> and create a subset to sample from
+- sample_size: type:int - number of results to return</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils.sample_if', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils.sample_if" class="source">
+    <pre><code>def sample_if(self, input, variable, string, sample_size):
+    """
+    Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
+    Takes in
+    - input: (as specified by self.formatter)
+    - variable: type:string - variable name to check for existence of `string`
+    - string: type:string - string to check if exists in `variable` and create a subset to sample from
+    - sample_size: type:int - number of results to return
+    """
+    return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">
+    <p>def <span class="ident">shuffle_and_stack_dicts_numerically</span>(</p><p>self, dict_list, n_digits=2)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.</p>
+<p>EG:
+e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]
+self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)</p>
+<p>Would return (possible variations depending on seed during random.shuffle):
+{'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically" class="source">
+    <pre><code>def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
+    """
+    Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+    single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+    EG:
+    e1=[
+    {'a':1, 'b':2},
+    {'a':3, 'b':4}
+    ]
+    self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+    Would return (possible variations depending on seed during random.shuffle):
+    {'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}
+    """
+    random.shuffle(dict_list) # Note: Random shuffle happens in place
+    return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="x_rand.x_rand.x_rand" class="name">class <span class="ident">x_rand</span></p>
+      
+  
+    <div class="desc"><p>Randomization class with functions to enable randomization in edX</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.x_rand', this);">Show source &equiv;</a></p>
+  <div id="source-x_rand.x_rand.x_rand" class="source">
+    <pre><code>class x_rand(utils):
+    """
+    Randomization class with functions to enable randomization in edX
+    """
+    def select_random(self, input):
+        """
+        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        """
+        input=self.formatter(input)
+        return random.choice(input)
 
     def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
         """
@@ -1333,6 +1586,7 @@ class x_rand_admin:
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
           <li><a href="#x_rand.x_rand.x_rand">x_rand</a></li>
+          <li><a href="#x_rand.x_rand.utils">utils</a></li>
           <li>builtins.object</li>
           </ul>
           <h3>Static methods</h3>
@@ -1342,10 +1596,14 @@ class x_rand_admin:
     <p>def <span class="ident">__init__</span>(</p><p>self)</p>
     </div>
     
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#x_rand.x_rand.utils">utils</a></code>.<code><a href="#x_rand.x_rand.utils.__init__">__init__</a></code>
+    </p>
 
     
   
-    <div class="desc"><p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+    <div class="desc inherited"><p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-x_rand.x_rand.x_rand.__init__', this);">Show source &equiv;</a></p>
