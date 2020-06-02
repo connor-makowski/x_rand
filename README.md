@@ -15,7 +15,7 @@ Make sure you have Python 3.6.x (or higher) installed on your system. You can do
 <br/><hr/>
 
 ## API Documentation
-The [full API documentation]("https://connor-makowski.github.io/x_rand/x_rand.html") can be found [here]("https://connor-makowski.github.io/x_rand/x_rand.html").
+The [full api documentation] can be found [here]<https://connor-makowski.github.io/x_rand/x_rand.html>.
 
 ### Installation For use in edX
 Upload the `python_lib.zip` file to your edX course.
@@ -262,3 +262,4 @@ globalize(x.fingerprint(males, n_total=4))
 
 [edX]: <https://www.edx.org/>
 [python]: <https://www.python.org/downloads/>
+[full api documentation]: <https://connor-makowski.github.io/x_rand/x_rand.html>
