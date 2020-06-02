@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>x_rand.x_rand API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>x_rand.x_rand</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import random
+
+class utils:
+    &#34;&#34;&#34;
+    Utilities to support the main x_rand functions
+    &#34;&#34;&#34;
+    def __init__(self):
+        &#34;&#34;&#34;
+        Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+
+        If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        &#34;&#34;&#34;
+        try:
+            randomseed = int(anonymous_student_id, 16)
+        except:
+            randomseed = 1
+        random.seed(randomseed)
+
+    def reseed(self, anonymous_student_id=None):
+        &#34;&#34;&#34;
+        Reseed the random seed to a specific value (used to recreate student data sets)
+        &#34;&#34;&#34;
+        try:
+            randomseed = int(anonymous_student_id, 16)
+        except:
+            randomseed = 1
+        random.seed(randomseed)
+
+    def formatter(self, input):
+        &#34;&#34;&#34;
+        Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+        Checks if the first element of a data set is a list or a tuple and if so, converts it
+        to a list of dictionaries that use the headers in the first row as assigned values
+
+        The following inputs give equivalent outputs:
+
+        ```
+        e1=[
+        [&#39;a&#39;,&#39;b&#39;],
+        [1,2],
+        [3,4]
+        ]
+
+        e1=(
+        (&#39;a&#39;,&#39;b&#39;),
+        (1,2),
+        (3,4)
+        )
+
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+        ```
+
+        All of the above examples are returned as:
+
+        ```
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+        ```
+        &#34;&#34;&#34;
+        # Note: __builtins__(py3) and __builtin__(py2) not accessable in edX
+        # Possible errors if users create variable named `list` or `tuple`
+        # Ideal: if isinstance(input[0], (__builtins__.list, __builtins__.tuple)):
+        if isinstance(input[0], (list, tuple)):
+            return [dict(zip(input[0],row)) for row in input[1:]]
+        else:
+            return input
+
+    def sample_if(self, input, variable, string, sample_size):
+        &#34;&#34;&#34;
+        Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
+
+        Takes in:
+
+        - input: (as specified by self.formatter)
+        - variable: type:string - variable name to check for existence of `string`
+        - string: type:string - string to check if exists in `variable` and create a subset to sample from
+        - sample_size: type:int - number of results to return
+        &#34;&#34;&#34;
+        return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
+
+    def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
+        &#34;&#34;&#34;
+        Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+        single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+        EG:
+        ```
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+
+        self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+        ```
+
+        Would return (possible variations depending on seed during random.shuffle):
+        ```
+        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+        ```
+        &#34;&#34;&#34;
+        random.shuffle(dict_list) # Note: Random shuffle happens in place
+        return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+class x_rand(utils):
+    &#34;&#34;&#34;
+    Randomization class with functions to enable randomization in edX
+    &#34;&#34;&#34;
+    def select_random(self, input):
+        &#34;&#34;&#34;
+        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        return random.choice(input)
+
+    def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
+        &#34;&#34;&#34;
+        Returns `n_total` answers where `n_true` answers are true (specified as the `correct` column with `correct_indicator`)
+
+        Takes in:
+
+        - input: (as specified by self.formatter)
+        - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
+        - n_true: type:int - number of true answers to return
+        - n_total: type:int - number of total answers to return
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
+        return self.shuffle_and_stack_dicts_numerically(choices)
+
+    def fingerprint(self, input, n_total):
+        &#34;&#34;&#34;
+        Returns `n_total` results from a list of inputs
+
+        - input: (as specified by self.formatter)
+        - n_total: type:int - number of total results to return
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        choices=random.sample(input, n_total)
+        return self.shuffle_and_stack_dicts_numerically(choices)
+
+class x_rand_admin:
+    def extended_functor(self, functor, x, aid):
+        &#34;&#34;&#34;
+        Internal function to allow list comprehension code to apply more complex operations like reseeding
+        &#34;&#34;&#34;
+        x.reseed(anonymous_student_id=aid)
+        return functor(x, aid)
+
+    def recreate(self, functor, aids):
+        &#34;&#34;&#34;
+        Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
+        
+        Requires:
+
+            - `functor` should be a function of any name that takes in two args of any name where:
+                - the first arg represents an x_rand instnace to be used for recreating data
+                - the second arg represents an anonymous_student_id to store
+                and returns a dictionary of relevant output to be stored in a list and returned
+                by this `recreate` function
+                - Note: Order of randomization is important because of how random seeds
+                    - It must match the randomization order as it was coded in edX
+            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+
+        Example:
+
+        ```
+        # DATA HERE
+
+        # Functor
+        def randomization_process(x, aid):
+            return {
+                &#39;aid&#39;: aid,
+                &#39;e1&#39;: x.select_random(e1),
+                &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
+                &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+            }
+
+        aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
+        output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+        ```
+        &#34;&#34;&#34;
+        x=x_rand()
+        return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="x_rand.x_rand.utils"><code class="flex name class">
+<span>class <span class="ident">utils</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Utilities to support the main x_rand functions</p>
+<p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
+<p>If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class utils:
+    &#34;&#34;&#34;
+    Utilities to support the main x_rand functions
+    &#34;&#34;&#34;
+    def __init__(self):
+        &#34;&#34;&#34;
+        Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+
+        If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        &#34;&#34;&#34;
+        try:
+            randomseed = int(anonymous_student_id, 16)
+        except:
+            randomseed = 1
+        random.seed(randomseed)
+
+    def reseed(self, anonymous_student_id=None):
+        &#34;&#34;&#34;
+        Reseed the random seed to a specific value (used to recreate student data sets)
+        &#34;&#34;&#34;
+        try:
+            randomseed = int(anonymous_student_id, 16)
+        except:
+            randomseed = 1
+        random.seed(randomseed)
+
+    def formatter(self, input):
+        &#34;&#34;&#34;
+        Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+        Checks if the first element of a data set is a list or a tuple and if so, converts it
+        to a list of dictionaries that use the headers in the first row as assigned values
+
+        The following inputs give equivalent outputs:
+
+        ```
+        e1=[
+        [&#39;a&#39;,&#39;b&#39;],
+        [1,2],
+        [3,4]
+        ]
+
+        e1=(
+        (&#39;a&#39;,&#39;b&#39;),
+        (1,2),
+        (3,4)
+        )
+
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+        ```
+
+        All of the above examples are returned as:
+
+        ```
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+        ```
+        &#34;&#34;&#34;
+        # Note: __builtins__(py3) and __builtin__(py2) not accessable in edX
+        # Possible errors if users create variable named `list` or `tuple`
+        # Ideal: if isinstance(input[0], (__builtins__.list, __builtins__.tuple)):
+        if isinstance(input[0], (list, tuple)):
+            return [dict(zip(input[0],row)) for row in input[1:]]
+        else:
+            return input
+
+    def sample_if(self, input, variable, string, sample_size):
+        &#34;&#34;&#34;
+        Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
+
+        Takes in:
+
+        - input: (as specified by self.formatter)
+        - variable: type:string - variable name to check for existence of `string`
+        - string: type:string - string to check if exists in `variable` and create a subset to sample from
+        - sample_size: type:int - number of results to return
+        &#34;&#34;&#34;
+        return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
+
+    def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
+        &#34;&#34;&#34;
+        Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+        single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+        EG:
+        ```
+        e1=[
+        {&#39;a&#39;:1, &#39;b&#39;:2},
+        {&#39;a&#39;:3, &#39;b&#39;:4}
+        ]
+
+        self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+        ```
+
+        Would return (possible variations depending on seed during random.shuffle):
+        ```
+        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+        ```
+        &#34;&#34;&#34;
+        random.shuffle(dict_list) # Note: Random shuffle happens in place
+        return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="x_rand.x_rand.x_rand" href="#x_rand.x_rand.x_rand">x_rand</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="x_rand.x_rand.utils.formatter"><code class="name flex">
+<span>def <span class="ident">formatter</span></span>(<span>self, input)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+Checks if the first element of a data set is a list or a tuple and if so, converts it
+to a list of dictionaries that use the headers in the first row as assigned values</p>
+<p>The following inputs give equivalent outputs:</p>
+<pre><code>e1=[
+['a','b'],
+[1,2],
+[3,4]
+]
+
+e1=(
+('a','b'),
+(1,2),
+(3,4)
+)
+
+e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]
+</code></pre>
+<p>All of the above examples are returned as:</p>
+<pre><code>e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def formatter(self, input):
+    &#34;&#34;&#34;
+    Takes in a list (or tuple) of lists (or tuples, or dictionaries)
+    Checks if the first element of a data set is a list or a tuple and if so, converts it
+    to a list of dictionaries that use the headers in the first row as assigned values
+
+    The following inputs give equivalent outputs:
+
+    ```
+    e1=[
+    [&#39;a&#39;,&#39;b&#39;],
+    [1,2],
+    [3,4]
+    ]
+
+    e1=(
+    (&#39;a&#39;,&#39;b&#39;),
+    (1,2),
+    (3,4)
+    )
+
+    e1=[
+    {&#39;a&#39;:1, &#39;b&#39;:2},
+    {&#39;a&#39;:3, &#39;b&#39;:4}
+    ]
+    ```
+
+    All of the above examples are returned as:
+
+    ```
+    e1=[
+    {&#39;a&#39;:1, &#39;b&#39;:2},
+    {&#39;a&#39;:3, &#39;b&#39;:4}
+    ]
+    ```
+    &#34;&#34;&#34;
+    # Note: __builtins__(py3) and __builtin__(py2) not accessable in edX
+    # Possible errors if users create variable named `list` or `tuple`
+    # Ideal: if isinstance(input[0], (__builtins__.list, __builtins__.tuple)):
+    if isinstance(input[0], (list, tuple)):
+        return [dict(zip(input[0],row)) for row in input[1:]]
+    else:
+        return input</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.utils.reseed"><code class="name flex">
+<span>def <span class="ident">reseed</span></span>(<span>self, anonymous_student_id=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reseed the random seed to a specific value (used to recreate student data sets)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reseed(self, anonymous_student_id=None):
+    &#34;&#34;&#34;
+    Reseed the random seed to a specific value (used to recreate student data sets)
+    &#34;&#34;&#34;
+    try:
+        randomseed = int(anonymous_student_id, 16)
+    except:
+        randomseed = 1
+    random.seed(randomseed)</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.utils.sample_if"><code class="name flex">
+<span>def <span class="ident">sample_if</span></span>(<span>self, input, variable, string, sample_size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns <code>sample_size</code> items from a subset of <code>input</code> items where a <code>string</code> is contained in a given <code>variable</code></p>
+<p>Takes in:</p>
+<ul>
+<li>input: (as specified by self.formatter)</li>
+<li>variable: type:string - variable name to check for existence of <code>string</code></li>
+<li>string: type:string - string to check if exists in <code>variable</code> and create a subset to sample from</li>
+<li>sample_size: type:int - number of results to return</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_if(self, input, variable, string, sample_size):
+    &#34;&#34;&#34;
+    Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
+
+    Takes in:
+
+    - input: (as specified by self.formatter)
+    - variable: type:string - variable name to check for existence of `string`
+    - string: type:string - string to check if exists in `variable` and create a subset to sample from
+    - sample_size: type:int - number of results to return
+    &#34;&#34;&#34;
+    return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically"><code class="name flex">
+<span>def <span class="ident">shuffle_and_stack_dicts_numerically</span></span>(<span>self, dict_list, n_digits=2)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.</p>
+<p>EG:</p>
+<pre><code>e1=[
+{'a':1, 'b':2},
+{'a':3, 'b':4}
+]
+
+self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+</code></pre>
+<p>Would return (possible variations depending on seed during random.shuffle):</p>
+<pre><code>{'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
+    &#34;&#34;&#34;
+    Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
+    single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+    EG:
+    ```
+    e1=[
+    {&#39;a&#39;:1, &#39;b&#39;:2},
+    {&#39;a&#39;:3, &#39;b&#39;:4}
+    ]
+
+    self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+    ```
+
+    Would return (possible variations depending on seed during random.shuffle):
+    ```
+    {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+    ```
+    &#34;&#34;&#34;
+    random.shuffle(dict_list) # Note: Random shuffle happens in place
+    return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="x_rand.x_rand.x_rand"><code class="flex name class">
+<span>class <span class="ident">x_rand</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Randomization class with functions to enable randomization in edX</p>
+<p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
+<p>If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class x_rand(utils):
+    &#34;&#34;&#34;
+    Randomization class with functions to enable randomization in edX
+    &#34;&#34;&#34;
+    def select_random(self, input):
+        &#34;&#34;&#34;
+        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        return random.choice(input)
+
+    def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
+        &#34;&#34;&#34;
+        Returns `n_total` answers where `n_true` answers are true (specified as the `correct` column with `correct_indicator`)
+
+        Takes in:
+
+        - input: (as specified by self.formatter)
+        - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
+        - n_true: type:int - number of true answers to return
+        - n_total: type:int - number of total answers to return
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
+        return self.shuffle_and_stack_dicts_numerically(choices)
+
+    def fingerprint(self, input, n_total):
+        &#34;&#34;&#34;
+        Returns `n_total` results from a list of inputs
+
+        - input: (as specified by self.formatter)
+        - n_total: type:int - number of total results to return
+        &#34;&#34;&#34;
+        input=self.formatter(input)
+        choices=random.sample(input, n_total)
+        return self.shuffle_and_stack_dicts_numerically(choices)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="x_rand.x_rand.utils" href="#x_rand.x_rand.utils">utils</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="x_rand.x_rand.x_rand.choices_random"><code class="name flex">
+<span>def <span class="ident">choices_random</span></span>(<span>self, input, correct_indicator, n_true=1, n_total=4)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns <code>n_total</code> answers where <code>n_true</code> answers are true (specified as the <code>correct</code> column with <code>correct_indicator</code>)</p>
+<p>Takes in:</p>
+<ul>
+<li>input: (as specified by self.formatter)</li>
+<li>correct_indicator: type:string - variable name to check if values are true when selecting <code>n_true</code> answers</li>
+<li>n_true: type:int - number of true answers to return</li>
+<li>n_total: type:int - number of total answers to return</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
+    &#34;&#34;&#34;
+    Returns `n_total` answers where `n_true` answers are true (specified as the `correct` column with `correct_indicator`)
+
+    Takes in:
+
+    - input: (as specified by self.formatter)
+    - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
+    - n_true: type:int - number of true answers to return
+    - n_total: type:int - number of total answers to return
+    &#34;&#34;&#34;
+    input=self.formatter(input)
+    choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
+    return self.shuffle_and_stack_dicts_numerically(choices)</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.x_rand.fingerprint"><code class="name flex">
+<span>def <span class="ident">fingerprint</span></span>(<span>self, input, n_total)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns <code>n_total</code> results from a list of inputs</p>
+<ul>
+<li>input: (as specified by self.formatter)</li>
+<li>n_total: type:int - number of total results to return</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fingerprint(self, input, n_total):
+    &#34;&#34;&#34;
+    Returns `n_total` results from a list of inputs
+
+    - input: (as specified by self.formatter)
+    - n_total: type:int - number of total results to return
+    &#34;&#34;&#34;
+    input=self.formatter(input)
+    choices=random.sample(input, n_total)
+    return self.shuffle_and_stack_dicts_numerically(choices)</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.x_rand.select_random"><code class="name flex">
+<span>def <span class="ident">select_random</span></span>(<span>self, input)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def select_random(self, input):
+    &#34;&#34;&#34;
+    Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+    &#34;&#34;&#34;
+    input=self.formatter(input)
+    return random.choice(input)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="x_rand.x_rand.utils" href="#x_rand.x_rand.utils">utils</a></b></code>:
+<ul class="hlist">
+<li><code><a title="x_rand.x_rand.utils.formatter" href="#x_rand.x_rand.utils.formatter">formatter</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.reseed" href="#x_rand.x_rand.utils.reseed">reseed</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.sample_if" href="#x_rand.x_rand.utils.sample_if">sample_if</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically" href="#x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">shuffle_and_stack_dicts_numerically</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="x_rand.x_rand.x_rand_admin"><code class="flex name class">
+<span>class <span class="ident">x_rand_admin</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class x_rand_admin:
+    def extended_functor(self, functor, x, aid):
+        &#34;&#34;&#34;
+        Internal function to allow list comprehension code to apply more complex operations like reseeding
+        &#34;&#34;&#34;
+        x.reseed(anonymous_student_id=aid)
+        return functor(x, aid)
+
+    def recreate(self, functor, aids):
+        &#34;&#34;&#34;
+        Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
+        
+        Requires:
+
+            - `functor` should be a function of any name that takes in two args of any name where:
+                - the first arg represents an x_rand instnace to be used for recreating data
+                - the second arg represents an anonymous_student_id to store
+                and returns a dictionary of relevant output to be stored in a list and returned
+                by this `recreate` function
+                - Note: Order of randomization is important because of how random seeds
+                    - It must match the randomization order as it was coded in edX
+            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+
+        Example:
+
+        ```
+        # DATA HERE
+
+        # Functor
+        def randomization_process(x, aid):
+            return {
+                &#39;aid&#39;: aid,
+                &#39;e1&#39;: x.select_random(e1),
+                &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
+                &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+            }
+
+        aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
+        output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+        ```
+        &#34;&#34;&#34;
+        x=x_rand()
+        return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="x_rand.x_rand.x_rand_admin.extended_functor"><code class="name flex">
+<span>def <span class="ident">extended_functor</span></span>(<span>self, functor, x, aid)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Internal function to allow list comprehension code to apply more complex operations like reseeding</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extended_functor(self, functor, x, aid):
+    &#34;&#34;&#34;
+    Internal function to allow list comprehension code to apply more complex operations like reseeding
+    &#34;&#34;&#34;
+    x.reseed(anonymous_student_id=aid)
+    return functor(x, aid)</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.x_rand_admin.recreate"><code class="name flex">
+<span>def <span class="ident">recreate</span></span>(<span>self, functor, aids)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given a <code>functor</code> and list of <code>aids</code> (anonymous_student_ids), returns a list of all student outputs</p>
+<h2 id="requires">Requires</h2>
+<ul>
+<li><code>functor</code> should be a function of any name that takes in two args of any name where:<ul>
+<li>the first arg represents an x_rand instnace to be used for recreating data</li>
+<li>the second arg represents an anonymous_student_id to store
+and returns a dictionary of relevant output to be stored in a list and returned
+by this <code>recreate</code> function</li>
+<li>Note: Order of randomization is important because of how random seeds<ul>
+<li>It must match the randomization order as it was coded in edX</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>aids</code> is a list of anonymous_student_ids (16 digit string of hex characters)</li>
+</ul>
+<p>Example:</p>
+<pre><code># DATA HERE
+
+# Functor
+def randomization_process(x, aid):
+    return {
+        'aid': aid,
+        'e1': x.select_random(e1),
+        'e2': x.choices_random(e2, correct_indicator='correct'),
+        'e3': x.fingerprint(e3, n_total=3),
+    }
+
+aids=['staff','0123456789abcdef','0123456789abcde0']
+output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recreate(self, functor, aids):
+    &#34;&#34;&#34;
+    Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
+    
+    Requires:
+
+        - `functor` should be a function of any name that takes in two args of any name where:
+            - the first arg represents an x_rand instnace to be used for recreating data
+            - the second arg represents an anonymous_student_id to store
+            and returns a dictionary of relevant output to be stored in a list and returned
+            by this `recreate` function
+            - Note: Order of randomization is important because of how random seeds
+                - It must match the randomization order as it was coded in edX
+        - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+
+    Example:
+
+    ```
+    # DATA HERE
+
+    # Functor
+    def randomization_process(x, aid):
+        return {
+            &#39;aid&#39;: aid,
+            &#39;e1&#39;: x.select_random(e1),
+            &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
+            &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+        }
+
+    aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
+    output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
+
+    ```
+    &#34;&#34;&#34;
+    x=x_rand()
+    return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="x_rand" href="index.html">x_rand</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="x_rand.x_rand.utils" href="#x_rand.x_rand.utils">utils</a></code></h4>
+<ul class="">
+<li><code><a title="x_rand.x_rand.utils.formatter" href="#x_rand.x_rand.utils.formatter">formatter</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.reseed" href="#x_rand.x_rand.utils.reseed">reseed</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.sample_if" href="#x_rand.x_rand.utils.sample_if">sample_if</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically" href="#x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">shuffle_and_stack_dicts_numerically</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="x_rand.x_rand.x_rand" href="#x_rand.x_rand.x_rand">x_rand</a></code></h4>
+<ul class="">
+<li><code><a title="x_rand.x_rand.x_rand.choices_random" href="#x_rand.x_rand.x_rand.choices_random">choices_random</a></code></li>
+<li><code><a title="x_rand.x_rand.x_rand.fingerprint" href="#x_rand.x_rand.x_rand.fingerprint">fingerprint</a></code></li>
+<li><code><a title="x_rand.x_rand.x_rand.select_random" href="#x_rand.x_rand.x_rand.select_random">select_random</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="x_rand.x_rand.x_rand_admin" href="#x_rand.x_rand.x_rand_admin">x_rand_admin</a></code></h4>
+<ul class="">
+<li><code><a title="x_rand.x_rand.x_rand_admin.extended_functor" href="#x_rand.x_rand.x_rand_admin.extended_functor">extended_functor</a></code></li>
+<li><code><a title="x_rand.x_rand.x_rand_admin.recreate" href="#x_rand.x_rand.x_rand_admin.recreate">recreate</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

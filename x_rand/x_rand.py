@@ -7,6 +7,7 @@ class utils:
     def __init__(self):
         """
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
+
         If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
         """
         try:
@@ -33,6 +34,7 @@ class utils:
 
         The following inputs give equivalent outputs:
 
+        ```
         e1=[
         ['a','b'],
         [1,2],
@@ -49,12 +51,16 @@ class utils:
         {'a':1, 'b':2},
         {'a':3, 'b':4}
         ]
+        ```
 
         All of the above examples are returned as:
+
+        ```
         e1=[
         {'a':1, 'b':2},
         {'a':3, 'b':4}
         ]
+        ```
         """
         # Note: __builtins__(py3) and __builtin__(py2) not accessable in edX
         # Possible errors if users create variable named `list` or `tuple`
@@ -67,7 +73,9 @@ class utils:
     def sample_if(self, input, variable, string, sample_size):
         """
         Returns `sample_size` items from a subset of `input` items where a `string` is contained in a given `variable`
-        Takes in
+
+        Takes in:
+
         - input: (as specified by self.formatter)
         - variable: type:string - variable name to check for existence of `string`
         - string: type:string - string to check if exists in `variable` and create a subset to sample from
@@ -81,14 +89,19 @@ class utils:
         single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
 
         EG:
+        ```
         e1=[
         {'a':1, 'b':2},
         {'a':3, 'b':4}
         ]
+
         self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
+        ```
 
         Would return (possible variations depending on seed during random.shuffle):
+        ```
         {'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}
+        ```
         """
         random.shuffle(dict_list) # Note: Random shuffle happens in place
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
@@ -107,7 +120,9 @@ class x_rand(utils):
     def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
         """
         Returns `n_total` answers where `n_true` answers are true (specified as the `correct` column with `correct_indicator`)
-        Takes in
+
+        Takes in:
+
         - input: (as specified by self.formatter)
         - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
         - n_true: type:int - number of true answers to return
@@ -120,6 +135,7 @@ class x_rand(utils):
     def fingerprint(self, input, n_total):
         """
         Returns `n_total` results from a list of inputs
+
         - input: (as specified by self.formatter)
         - n_total: type:int - number of total results to return
         """
@@ -138,7 +154,9 @@ class x_rand_admin:
     def recreate(self, functor, aids):
         """
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
+        
         Requires:
+
             - `functor` should be a function of any name that takes in two args of any name where:
                 - the first arg represents an x_rand instnace to be used for recreating data
                 - the second arg represents an anonymous_student_id to store
