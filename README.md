@@ -8,12 +8,6 @@ Randomization package for [edX] courses
   - Randomize multiple choice problems on edX
   - Randomize checkbox problems on edX
 
-## Setup
-
-Make sure you have Python 3.x.x (or higher) installed on your system. You can download it from [python].
-
-<br/><hr/>
-
 ## API Documentation
 The [full api documentation](https://connor-makowski.github.io/x_rand/x_rand.html) can be found [here](https://connor-makowski.github.io/x_rand/x_rand.html).
 
@@ -22,11 +16,14 @@ Upload the `python_lib.zip` file to your edX course.
   - WARNING: This will overwrite your current `python_lib.zip` if you already have it.
   - NOTE: If you already have a `python_lib.zip`, you can add the x_rand.py file from `python_lib` directly to your `python_lib` folder, re-zip it and re-upload it.
 
+
 ### Installation For testing and admin use
+Make sure you have Python 3.x.x (or higher) installed on your system. You can download it from [python].
+
 ```
 pip install x_rand
 ```
-<br/><hr/>
+
 
 ### Example Random mathematical problem
 1) Initialize an `x_rand` variable:
@@ -86,8 +83,6 @@ globalize(x.select_random(data))
 </problem>
 ```
 
-
-<br/><hr/>
 
 ### Example Random multiple choice or checkbox problem
 1) Initialize an `x_rand` variable:

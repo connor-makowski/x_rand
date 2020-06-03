@@ -1,5 +1,6 @@
 import random
-class x_rand:
+
+class utils:
     def __init__(self):
         try:
             randomseed = int(anonymous_student_id, 16)
@@ -20,16 +21,17 @@ class x_rand:
         else:
             return input
 
-    def select_random(self, input):
-        input=self.formatter(input)
-        return random.choice(input)
-
     def sample_if(self, input, variable, string, sample_size):
         return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
-        random.shuffle(dict_list)
+        random.shuffle(dict_list) # Note: Random shuffle happens in place
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+class x_rand(utils):
+    def select_random(self, input):
+        input=self.formatter(input)
+        return random.choice(input)
 
     def choices_random(self, input, correct_indicator, n_true=1, n_total=4):
         input=self.formatter(input)
