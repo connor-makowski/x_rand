@@ -34,7 +34,7 @@ class utils:
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
-        If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        If the `anonymous_student_id` fails for some reason (eg: In testing or while staff) sets the random seed to 1
         &#34;&#34;&#34;
         try:
             randomseed = int(anonymous_student_id, 16)
@@ -54,9 +54,13 @@ class utils:
 
     def formatter(self, input):
         &#34;&#34;&#34;
-        Takes in a list (or tuple) of lists (or tuples, or dictionaries)
-        Checks if the first element of a data set is a list or a tuple and if so, converts it
-        to a list of dictionaries that use the headers in the first row as assigned values
+        Takes in:
+
+            `input`:
+                Type: a (list | tuple) of (lists | tuples | dictionaries)
+                What: data to format
+
+        Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
         The following inputs give equivalent outputs:
 
@@ -102,17 +106,33 @@ class utils:
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - variable: type:string - variable name to check for existence of `string`
-        - string: type:string - string to check if exists in `variable` and create a subset to sample from
-        - sample_size: type:int - number of results to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - variable:
+            - Type: string
+            - What: Variable name to check for existence of `string`
+        - string:
+            - Type: string
+            - What: String to check if exists in `variable` and create a subset to sample from
+        - sample_size:
+            - Type:int
+            - What: The number of results to return
         &#34;&#34;&#34;
         return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
         &#34;&#34;&#34;
-        Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
-        single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+        Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+        Takes in:
+
+            - `dict_list`:
+                - Type: list of dictionaries (output of self.formatter)
+                - What: The list of dictionaries to shuffle in place
+            - `n_digits`:
+                - Type: int
+                - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -126,7 +146,7 @@ class utils:
 
         Would return (possible variations depending on seed during random.shuffle):
         ```
-        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
         ```
         &#34;&#34;&#34;
         random.shuffle(dict_list) # Note: Random shuffle happens in place
@@ -138,7 +158,13 @@ class x_rand(utils):
     &#34;&#34;&#34;
     def select_random(self, input):
         &#34;&#34;&#34;
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        Returns a single row chosen randomly from the formatted data set
+
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
         &#34;&#34;&#34;
         input=self.formatter(input)
         return random.choice(input)
@@ -149,10 +175,18 @@ class x_rand(utils):
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
-        - n_true: type:int - number of true answers to return
-        - n_total: type:int - number of total answers to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - correct_indicator:
+            - Type: string
+            - What: variable name to check if values are true when selecting `n_true` answers
+        - n_true:
+            - Type: int
+            - What: Number of true answers to return
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -162,8 +196,14 @@ class x_rand(utils):
         &#34;&#34;&#34;
         Returns `n_total` results from a list of inputs
 
-        - input: (as specified by self.formatter)
-        - n_total: type:int - number of total results to return
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=random.sample(input, n_total)
@@ -180,17 +220,20 @@ class x_rand_admin:
     def recreate(self, functor, aids):
         &#34;&#34;&#34;
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
-        
+
         Requires:
 
-            - `functor` should be a function of any name that takes in two args of any name where:
-                - the first arg represents an x_rand instnace to be used for recreating data
-                - the second arg represents an anonymous_student_id to store
-                and returns a dictionary of relevant output to be stored in a list and returned
-                by this `recreate` function
-                - Note: Order of randomization is important because of how random seeds
-                    - It must match the randomization order as it was coded in edX
-            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+            - `functor`
+                Type: function
+                What: A function of any name that takes in two args of any name where:
+                    - the first arg represents an x_rand instnace to be used for recreating data
+                    - the second arg represents an anonymous_student_id to store
+                    - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
+                    - Note: Order of randomization is important because of how random seeds
+                    - This function must match the randomization order as it was coded in edX
+            - `aids`
+                - Type: list of strings 
+                - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
 
@@ -230,7 +273,7 @@ class x_rand_admin:
 <dd>
 <div class="desc"><p>Utilities to support the main x_rand functions</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<p>If the <code>anonymous_student_id</code> fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -243,7 +286,7 @@ class x_rand_admin:
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
-        If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        If the `anonymous_student_id` fails for some reason (eg: In testing or while staff) sets the random seed to 1
         &#34;&#34;&#34;
         try:
             randomseed = int(anonymous_student_id, 16)
@@ -263,9 +306,13 @@ class x_rand_admin:
 
     def formatter(self, input):
         &#34;&#34;&#34;
-        Takes in a list (or tuple) of lists (or tuples, or dictionaries)
-        Checks if the first element of a data set is a list or a tuple and if so, converts it
-        to a list of dictionaries that use the headers in the first row as assigned values
+        Takes in:
+
+            `input`:
+                Type: a (list | tuple) of (lists | tuples | dictionaries)
+                What: data to format
+
+        Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
         The following inputs give equivalent outputs:
 
@@ -311,17 +358,33 @@ class x_rand_admin:
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - variable: type:string - variable name to check for existence of `string`
-        - string: type:string - string to check if exists in `variable` and create a subset to sample from
-        - sample_size: type:int - number of results to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - variable:
+            - Type: string
+            - What: Variable name to check for existence of `string`
+        - string:
+            - Type: string
+            - What: String to check if exists in `variable` and create a subset to sample from
+        - sample_size:
+            - Type:int
+            - What: The number of results to return
         &#34;&#34;&#34;
         return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
         &#34;&#34;&#34;
-        Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
-        single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+        Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+        Takes in:
+
+            - `dict_list`:
+                - Type: list of dictionaries (output of self.formatter)
+                - What: The list of dictionaries to shuffle in place
+            - `n_digits`:
+                - Type: int
+                - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -335,7 +398,7 @@ class x_rand_admin:
 
         Would return (possible variations depending on seed during random.shuffle):
         ```
-        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+        {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
         ```
         &#34;&#34;&#34;
         random.shuffle(dict_list) # Note: Random shuffle happens in place
@@ -351,9 +414,12 @@ class x_rand_admin:
 <span>def <span class="ident">formatter</span></span>(<span>self, input)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Takes in a list (or tuple) of lists (or tuples, or dictionaries)
-Checks if the first element of a data set is a list or a tuple and if so, converts it
-to a list of dictionaries that use the headers in the first row as assigned values</p>
+<div class="desc"><p>Takes in:</p>
+<pre><code>&lt;code&gt;input&lt;/code&gt;:
+    Type: a (list | tuple) of (lists | tuples | dictionaries)
+    What: data to format
+</code></pre>
+<p>Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values</p>
 <p>The following inputs give equivalent outputs:</p>
 <pre><code>e1=[
 ['a','b'],
@@ -384,9 +450,13 @@ e1=[
 </summary>
 <pre><code class="python">def formatter(self, input):
     &#34;&#34;&#34;
-    Takes in a list (or tuple) of lists (or tuples, or dictionaries)
-    Checks if the first element of a data set is a list or a tuple and if so, converts it
-    to a list of dictionaries that use the headers in the first row as assigned values
+    Takes in:
+
+        `input`:
+            Type: a (list | tuple) of (lists | tuples | dictionaries)
+            What: data to format
+
+    Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
     The following inputs give equivalent outputs:
 
@@ -454,10 +524,26 @@ e1=[
 <div class="desc"><p>Returns <code>sample_size</code> items from a subset of <code>input</code> items where a <code>string</code> is contained in a given <code>variable</code></p>
 <p>Takes in:</p>
 <ul>
-<li>input: (as specified by self.formatter)</li>
-<li>variable: type:string - variable name to check for existence of <code>string</code></li>
-<li>string: type:string - string to check if exists in <code>variable</code> and create a subset to sample from</li>
-<li>sample_size: type:int - number of results to return</li>
+<li>input:<ul>
+<li>Type: list | tuple (as specified by self.formatter)</li>
+<li>What: Input to select random choices from</li>
+</ul>
+</li>
+<li>variable:<ul>
+<li>Type: string</li>
+<li>What: Variable name to check for existence of <code>string</code></li>
+</ul>
+</li>
+<li>string:<ul>
+<li>Type: string</li>
+<li>What: String to check if exists in <code>variable</code> and create a subset to sample from</li>
+</ul>
+</li>
+<li>sample_size:<ul>
+<li>Type:int</li>
+<li>What: The number of results to return</li>
+</ul>
+</li>
 </ul></div>
 <details class="source">
 <summary>
@@ -469,10 +555,18 @@ e1=[
 
     Takes in:
 
-    - input: (as specified by self.formatter)
-    - variable: type:string - variable name to check for existence of `string`
-    - string: type:string - string to check if exists in `variable` and create a subset to sample from
-    - sample_size: type:int - number of results to return
+    - input:
+        - Type: list | tuple (as specified by self.formatter)
+        - What: Input to select random choices from
+    - variable:
+        - Type: string
+        - What: Variable name to check for existence of `string`
+    - string:
+        - Type: string
+        - What: String to check if exists in `variable` and create a subset to sample from
+    - sample_size:
+        - Type:int
+        - What: The number of results to return
     &#34;&#34;&#34;
     return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)</code></pre>
 </details>
@@ -481,8 +575,15 @@ e1=[
 <span>def <span class="ident">shuffle_and_stack_dicts_numerically</span></span>(<span>self, dict_list, n_digits=2)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
-single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.</p>
+<div class="desc"><p>Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.</p>
+<p>Takes in:</p>
+<pre><code>- &lt;code&gt;dict\_list&lt;/code&gt;:
+    - Type: list of dictionaries (output of self.formatter)
+    - What: The list of dictionaries to shuffle in place
+- &lt;code&gt;n\_digits&lt;/code&gt;:
+    - Type: int
+    - What: The number of digits to name returned variables with
+</code></pre>
 <p>EG:</p>
 <pre><code>e1=[
 {'a':1, 'b':2},
@@ -492,7 +593,7 @@ single dictionary with stacked (numerically with n_digits starting at all zeros)
 self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 </code></pre>
 <p>Would return (possible variations depending on seed during random.shuffle):</p>
-<pre><code>{'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}
+<pre><code>{'a_00':1, 'b_00':2, 'a_01':3, 'b_01':4}
 </code></pre></div>
 <details class="source">
 <summary>
@@ -500,8 +601,16 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 </summary>
 <pre><code class="python">def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
     &#34;&#34;&#34;
-    Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
-    single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+    Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+    Takes in:
+
+        - `dict_list`:
+            - Type: list of dictionaries (output of self.formatter)
+            - What: The list of dictionaries to shuffle in place
+        - `n_digits`:
+            - Type: int
+            - What: The number of digits to name returned variables with
 
     EG:
     ```
@@ -515,7 +624,7 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 
     Would return (possible variations depending on seed during random.shuffle):
     ```
-    {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:}
+    {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
     ```
     &#34;&#34;&#34;
     random.shuffle(dict_list) # Note: Random shuffle happens in place
@@ -530,7 +639,7 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <dd>
 <div class="desc"><p>Randomization class with functions to enable randomization in edX</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<p>If the <code>anonymous_student_id</code> fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -541,7 +650,13 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     &#34;&#34;&#34;
     def select_random(self, input):
         &#34;&#34;&#34;
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        Returns a single row chosen randomly from the formatted data set
+
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
         &#34;&#34;&#34;
         input=self.formatter(input)
         return random.choice(input)
@@ -552,10 +667,18 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
-        - n_true: type:int - number of true answers to return
-        - n_total: type:int - number of total answers to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - correct_indicator:
+            - Type: string
+            - What: variable name to check if values are true when selecting `n_true` answers
+        - n_true:
+            - Type: int
+            - What: Number of true answers to return
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -565,8 +688,14 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
         &#34;&#34;&#34;
         Returns `n_total` results from a list of inputs
 
-        - input: (as specified by self.formatter)
-        - n_total: type:int - number of total results to return
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=random.sample(input, n_total)
@@ -585,10 +714,26 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <div class="desc"><p>Returns <code>n_total</code> answers where <code>n_true</code> answers are true (specified as the <code>correct</code> column with <code>correct_indicator</code>)</p>
 <p>Takes in:</p>
 <ul>
-<li>input: (as specified by self.formatter)</li>
-<li>correct_indicator: type:string - variable name to check if values are true when selecting <code>n_true</code> answers</li>
-<li>n_true: type:int - number of true answers to return</li>
-<li>n_total: type:int - number of total answers to return</li>
+<li>input:<ul>
+<li>Type: list | tuple (as specified by self.formatter)</li>
+<li>What: Input to select random choices from</li>
+</ul>
+</li>
+<li>correct_indicator:<ul>
+<li>Type: string</li>
+<li>What: variable name to check if values are true when selecting <code>n_true</code> answers</li>
+</ul>
+</li>
+<li>n_true:<ul>
+<li>Type: int</li>
+<li>What: Number of true answers to return</li>
+</ul>
+</li>
+<li>n_total:<ul>
+<li>Type: int</li>
+<li>What: Number of total answers to return</li>
+</ul>
+</li>
 </ul></div>
 <details class="source">
 <summary>
@@ -600,10 +745,18 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 
     Takes in:
 
-    - input: (as specified by self.formatter)
-    - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
-    - n_true: type:int - number of true answers to return
-    - n_total: type:int - number of total answers to return
+    - input:
+        - Type: list | tuple (as specified by self.formatter)
+        - What: Input to select random choices from
+    - correct_indicator:
+        - Type: string
+        - What: variable name to check if values are true when selecting `n_true` answers
+    - n_true:
+        - Type: int
+        - What: Number of true answers to return
+    - n_total:
+        - Type: int
+        - What: Number of total answers to return
     &#34;&#34;&#34;
     input=self.formatter(input)
     choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -615,9 +768,18 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 </code></dt>
 <dd>
 <div class="desc"><p>Returns <code>n_total</code> results from a list of inputs</p>
+<p>Takes in:</p>
 <ul>
-<li>input: (as specified by self.formatter)</li>
-<li>n_total: type:int - number of total results to return</li>
+<li>input:<ul>
+<li>Type: list | tuple (as specified by self.formatter)</li>
+<li>What: Input to select random choices from</li>
+</ul>
+</li>
+<li>n_total:<ul>
+<li>Type: int</li>
+<li>What: Number of total answers to return</li>
+</ul>
+</li>
 </ul></div>
 <details class="source">
 <summary>
@@ -627,8 +789,14 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     &#34;&#34;&#34;
     Returns `n_total` results from a list of inputs
 
-    - input: (as specified by self.formatter)
-    - n_total: type:int - number of total results to return
+    Takes in:
+
+    - input:
+        - Type: list | tuple (as specified by self.formatter)
+        - What: Input to select random choices from
+    - n_total:
+        - Type: int
+        - What: Number of total answers to return
     &#34;&#34;&#34;
     input=self.formatter(input)
     choices=random.sample(input, n_total)
@@ -639,14 +807,28 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <span>def <span class="ident">select_random</span></span>(<span>self, input)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set</p></div>
+<div class="desc"><p>Returns a single row chosen randomly from the formatted data set</p>
+<p>Takes in:</p>
+<ul>
+<li>input:<ul>
+<li>Type: list | tuple (as specified by self.formatter)</li>
+<li>What: Input to select random choices from</li>
+</ul>
+</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def select_random(self, input):
     &#34;&#34;&#34;
-    Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+    Returns a single row chosen randomly from the formatted data set
+
+    Takes in:
+
+    - input:
+        - Type: list | tuple (as specified by self.formatter)
+        - What: Input to select random choices from
     &#34;&#34;&#34;
     input=self.formatter(input)
     return random.choice(input)</code></pre>
@@ -685,17 +867,20 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     def recreate(self, functor, aids):
         &#34;&#34;&#34;
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
-        
+
         Requires:
 
-            - `functor` should be a function of any name that takes in two args of any name where:
-                - the first arg represents an x_rand instnace to be used for recreating data
-                - the second arg represents an anonymous_student_id to store
-                and returns a dictionary of relevant output to be stored in a list and returned
-                by this `recreate` function
-                - Note: Order of randomization is important because of how random seeds
-                    - It must match the randomization order as it was coded in edX
-            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+            - `functor`
+                Type: function
+                What: A function of any name that takes in two args of any name where:
+                    - the first arg represents an x_rand instnace to be used for recreating data
+                    - the second arg represents an anonymous_student_id to store
+                    - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
+                    - Note: Order of randomization is important because of how random seeds
+                    - This function must match the randomization order as it was coded in edX
+            - `aids`
+                - Type: list of strings 
+                - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
 
@@ -745,18 +930,19 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <div class="desc"><p>Given a <code>functor</code> and list of <code>aids</code> (anonymous_student_ids), returns a list of all student outputs</p>
 <h2 id="requires">Requires</h2>
 <ul>
-<li><code>functor</code> should be a function of any name that takes in two args of any name where:<ul>
-<li>the first arg represents an x_rand instnace to be used for recreating data</li>
-<li>the second arg represents an anonymous_student_id to store
-and returns a dictionary of relevant output to be stored in a list and returned
-by this <code>recreate</code> function</li>
-<li>Note: Order of randomization is important because of how random seeds<ul>
-<li>It must match the randomization order as it was coded in edX</li>
+<li><code>functor</code>
+Type: function
+What: A function of any name that takes in two args of any name where:
+- the first arg represents an x_rand instnace to be used for recreating data
+- the second arg represents an anonymous_student_id to store
+- returns a dictionary of relevant output to be stored in a list and returned by this <code>recreate</code> function
+- Note: Order of randomization is important because of how random seeds
+- This function must match the randomization order as it was coded in edX</li>
+<li><code>aids</code><ul>
+<li>Type: list of strings </li>
+<li>What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><code>aids</code> is a list of anonymous_student_ids (16 digit string of hex characters)</li>
 </ul>
 <p>Example:</p>
 <pre><code># DATA HERE
@@ -781,17 +967,20 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
 <pre><code class="python">def recreate(self, functor, aids):
     &#34;&#34;&#34;
     Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
-    
+
     Requires:
 
-        - `functor` should be a function of any name that takes in two args of any name where:
-            - the first arg represents an x_rand instnace to be used for recreating data
-            - the second arg represents an anonymous_student_id to store
-            and returns a dictionary of relevant output to be stored in a list and returned
-            by this `recreate` function
-            - Note: Order of randomization is important because of how random seeds
-                - It must match the randomization order as it was coded in edX
-        - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+        - `functor`
+            Type: function
+            What: A function of any name that takes in two args of any name where:
+                - the first arg represents an x_rand instnace to be used for recreating data
+                - the second arg represents an anonymous_student_id to store
+                - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
+                - Note: Order of randomization is important because of how random seeds
+                - This function must match the randomization order as it was coded in edX
+        - `aids`
+            - Type: list of strings 
+            - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
     Example:
 

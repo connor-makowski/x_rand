@@ -8,7 +8,7 @@ class utils:
         """
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
-        If the anonymous_student_id fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        If the `anonymous_student_id` fails for some reason (eg: In testing or while staff) sets the random seed to 1
         """
         try:
             randomseed = int(anonymous_student_id, 16)
@@ -28,9 +28,13 @@ class utils:
 
     def formatter(self, input):
         """
-        Takes in a list (or tuple) of lists (or tuples, or dictionaries)
-        Checks if the first element of a data set is a list or a tuple and if so, converts it
-        to a list of dictionaries that use the headers in the first row as assigned values
+        Takes in:
+
+            `input`:
+                Type: a (list | tuple) of (lists | tuples | dictionaries)
+                What: data to format
+
+        Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
         The following inputs give equivalent outputs:
 
@@ -76,17 +80,33 @@ class utils:
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - variable: type:string - variable name to check for existence of `string`
-        - string: type:string - string to check if exists in `variable` and create a subset to sample from
-        - sample_size: type:int - number of results to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - variable:
+            - Type: string
+            - What: Variable name to check for existence of `string`
+        - string:
+            - Type: string
+            - What: String to check if exists in `variable` and create a subset to sample from
+        - sample_size:
+            - Type:int
+            - What: The number of results to return
         """
         return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
         """
-        Takes in a list of dictionaries (output of self.formatter) with common values, shuffles them in place and then returns a
-        single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+        Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.
+
+        Takes in:
+
+            - `dict_list`:
+                - Type: list of dictionaries (output of self.formatter)
+                - What: The list of dictionaries to shuffle in place
+            - `n_digits`:
+                - Type: int
+                - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -100,7 +120,7 @@ class utils:
 
         Would return (possible variations depending on seed during random.shuffle):
         ```
-        {'a_00':1, 'b_00':2, 'a_01':3, 'b_01':}
+        {'a_00':1, 'b_00':2, 'a_01':3, 'b_01':4}
         ```
         """
         random.shuffle(dict_list) # Note: Random shuffle happens in place
@@ -112,7 +132,13 @@ class x_rand(utils):
     """
     def select_random(self, input):
         """
-        Takes in an input (as specified by self.formatter) and returns a single row chosen randomly from the returned data set
+        Returns a single row chosen randomly from the formatted data set
+
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
         """
         input=self.formatter(input)
         return random.choice(input)
@@ -123,10 +149,18 @@ class x_rand(utils):
 
         Takes in:
 
-        - input: (as specified by self.formatter)
-        - correct_indicator: type:string - variable name to check if values are true when selecting `n_true` answers
-        - n_true: type:int - number of true answers to return
-        - n_total: type:int - number of total answers to return
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - correct_indicator:
+            - Type: string
+            - What: variable name to check if values are true when selecting `n_true` answers
+        - n_true:
+            - Type: int
+            - What: Number of true answers to return
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         """
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, 'True', n_true)+self.sample_if(input, correct_indicator, 'False', n_total-n_true)
@@ -136,8 +170,14 @@ class x_rand(utils):
         """
         Returns `n_total` results from a list of inputs
 
-        - input: (as specified by self.formatter)
-        - n_total: type:int - number of total results to return
+        Takes in:
+
+        - input:
+            - Type: list | tuple (as specified by self.formatter)
+            - What: Input to select random choices from
+        - n_total:
+            - Type: int
+            - What: Number of total answers to return
         """
         input=self.formatter(input)
         choices=random.sample(input, n_total)
@@ -154,17 +194,20 @@ class x_rand_admin:
     def recreate(self, functor, aids):
         """
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
-        
+
         Requires:
 
-            - `functor` should be a function of any name that takes in two args of any name where:
-                - the first arg represents an x_rand instnace to be used for recreating data
-                - the second arg represents an anonymous_student_id to store
-                and returns a dictionary of relevant output to be stored in a list and returned
-                by this `recreate` function
-                - Note: Order of randomization is important because of how random seeds
-                    - It must match the randomization order as it was coded in edX
-            - `aids` is a list of anonymous_student_ids (16 digit string of hex characters)
+            - `functor`
+                Type: function
+                What: A function of any name that takes in two args of any name where:
+                    - the first arg represents an x_rand instnace to be used for recreating data
+                    - the second arg represents an anonymous_student_id to store
+                    - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
+                    - Note: Order of randomization is important because of how random seeds
+                    - This function must match the randomization order as it was coded in edX
+            - `aids`
+                - Type: list of strings 
+                - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
 
