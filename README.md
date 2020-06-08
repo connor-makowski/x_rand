@@ -211,6 +211,7 @@ To fingerprint a problem.
 <problem>
  <script type="text/python">
 <![CDATA[
+from python_lib.x_rand import x_rand
 
 females = [
     ["female"],
