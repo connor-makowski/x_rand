@@ -1,18 +1,20 @@
 import random
 
 class utils:
-    def __init__(self):
+    def __init__(self, upseed=0, infinite_random=False):
         try:
-            randomseed = int(anonymous_student_id, 16)
+            anonymous_student_id = anonymous_student_id
         except:
-            randomseed = 1
-        random.seed(randomseed)
+            anonymous_student_id = None
+        if infinite_random:
+            upseed=random.uniform(1,1000000)
+        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
 
-    def reseed(self, anonymous_student_id=None):
+    def reseed(self, anonymous_student_id=None, upseed=0):
         try:
-            randomseed = int(anonymous_student_id, 16)
+            randomseed = int(anonymous_student_id, 16)+upseed
         except:
-            randomseed = 1
+            randomseed = 1+upseed
         random.seed(randomseed)
 
     def formatter(self, input):
@@ -42,3 +44,12 @@ class x_rand(utils):
         input=self.formatter(input)
         choices=random.sample(input, n_total)
         return self.shuffle_and_stack_dicts_numerically(choices)
+
+class x_rand_admin:
+    def extended_functor(self, functor, x, aid, upseed):
+        x.reseed(anonymous_student_id=aid, upseed=upseed)
+        return functor(x, aid)
+
+    def recreate(self, functor, aids, upseed=0):
+        x=x_rand()
+        return [self.extended_functor(functor=functor, x=x, aid=aid, upseed=upseed) for aid in aids]

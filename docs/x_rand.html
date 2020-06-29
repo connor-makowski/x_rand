@@ -30,26 +30,38 @@ class utils:
     &#34;&#34;&#34;
     Utilities to support the main x_rand functions
     &#34;&#34;&#34;
-    def __init__(self):
+    def __init__(self, upseed=0, infinite_random=False):
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
-        If the `anonymous_student_id` fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        Takes in:
+
+        - `upseed`:
+            - Type: int
+            - What: incremental value to increase the anonymous_student_id hash by
+            - Default: 0
+        - `infinite_random`:
+            - Type: bool
+            - What: Flag to generate a random upseed on every initialization of the problem
+            - Default: False
+            - Note: Overwrites any specified upseed
         &#34;&#34;&#34;
         try:
-            randomseed = int(anonymous_student_id, 16)
+            anonymous_student_id = anonymous_student_id
         except:
-            randomseed = 1
-        random.seed(randomseed)
+            anonymous_student_id = None
+        if infinite_random:
+            upseed=random.uniform(1,1000000)
+        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
 
-    def reseed(self, anonymous_student_id=None):
+    def reseed(self, anonymous_student_id=None, upseed=0):
         &#34;&#34;&#34;
         Reseed the random seed to a specific value (used to recreate student data sets)
         &#34;&#34;&#34;
         try:
-            randomseed = int(anonymous_student_id, 16)
+            randomseed = int(anonymous_student_id, 16)+upseed
         except:
-            randomseed = 1
+            randomseed = 1+upseed
         random.seed(randomseed)
 
     def formatter(self, input):
@@ -133,6 +145,7 @@ class utils:
         - `n_digits`:
             - Type: int
             - What: The number of digits to name returned variables with
+            - Default: 2
 
         EG:
         ```
@@ -210,22 +223,22 @@ class x_rand(utils):
         return self.shuffle_and_stack_dicts_numerically(choices)
 
 class x_rand_admin:
-    def extended_functor(self, functor, x, aid):
+    def extended_functor(self, functor, x, aid, upseed):
         &#34;&#34;&#34;
         Internal function to allow list comprehension code to apply more complex operations like reseeding
         &#34;&#34;&#34;
-        x.reseed(anonymous_student_id=aid)
+        x.reseed(anonymous_student_id=aid, upseed=upseed)
         return functor(x, aid)
 
-    def recreate(self, functor, aids):
+    def recreate(self, functor, aids, upseed=0):
         &#34;&#34;&#34;
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
 
         Requires:
 
             - `functor`
-                Type: function
-                What: A function of any name that takes in two args of any name where:
+                - Type: function
+                - What: A function of any name that takes in two args of any name where:
                     - the first arg represents an x_rand instnace to be used for recreating data
                     - the second arg represents an anonymous_student_id to store
                     - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
@@ -234,6 +247,13 @@ class x_rand_admin:
             - `aids`
                 - Type: list of strings
                 - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
+
+        Optional:
+
+            - `upseed`:
+                - Type: int
+                - What: The upseed used when generating the problem in edX
+                - Default: 0
 
         Example:
 
@@ -255,7 +275,7 @@ class x_rand_admin:
         ```
         &#34;&#34;&#34;
         x=x_rand()
-        return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+        return [self.extended_functor(functor=functor, x=x, aid=aid, upseed=upseed) for aid in aids]</code></pre>
 </details>
 </section>
 <section>
@@ -269,11 +289,27 @@ class x_rand_admin:
 <dl>
 <dt id="x_rand.x_rand.utils"><code class="flex name class">
 <span>class <span class="ident">utils</span></span>
+<span>(</span><span>upseed=0, infinite_random=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Utilities to support the main x_rand functions</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>If the <code>anonymous_student_id</code> fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<p>Takes in:</p>
+<ul>
+<li><code>upseed</code>:<ul>
+<li>Type: int</li>
+<li>What: incremental value to increase the anonymous_student_id hash by</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>infinite_random</code>:<ul>
+<li>Type: bool</li>
+<li>What: Flag to generate a random upseed on every initialization of the problem</li>
+<li>Default: False</li>
+<li>Note: Overwrites any specified upseed</li>
+</ul>
+</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -282,26 +318,38 @@ class x_rand_admin:
     &#34;&#34;&#34;
     Utilities to support the main x_rand functions
     &#34;&#34;&#34;
-    def __init__(self):
+    def __init__(self, upseed=0, infinite_random=False):
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
-        If the `anonymous_student_id` fails for some reason (eg: In testing or while staff) sets the random seed to 1
+        Takes in:
+
+        - `upseed`:
+            - Type: int
+            - What: incremental value to increase the anonymous_student_id hash by
+            - Default: 0
+        - `infinite_random`:
+            - Type: bool
+            - What: Flag to generate a random upseed on every initialization of the problem
+            - Default: False
+            - Note: Overwrites any specified upseed
         &#34;&#34;&#34;
         try:
-            randomseed = int(anonymous_student_id, 16)
+            anonymous_student_id = anonymous_student_id
         except:
-            randomseed = 1
-        random.seed(randomseed)
+            anonymous_student_id = None
+        if infinite_random:
+            upseed=random.uniform(1,1000000)
+        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
 
-    def reseed(self, anonymous_student_id=None):
+    def reseed(self, anonymous_student_id=None, upseed=0):
         &#34;&#34;&#34;
         Reseed the random seed to a specific value (used to recreate student data sets)
         &#34;&#34;&#34;
         try:
-            randomseed = int(anonymous_student_id, 16)
+            randomseed = int(anonymous_student_id, 16)+upseed
         except:
-            randomseed = 1
+            randomseed = 1+upseed
         random.seed(randomseed)
 
     def formatter(self, input):
@@ -385,6 +433,7 @@ class x_rand_admin:
         - `n_digits`:
             - Type: int
             - What: The number of digits to name returned variables with
+            - Default: 2
 
         EG:
         ```
@@ -501,7 +550,7 @@ e1=[
 </details>
 </dd>
 <dt id="x_rand.x_rand.utils.reseed"><code class="name flex">
-<span>def <span class="ident">reseed</span></span>(<span>self, anonymous_student_id=None)</span>
+<span>def <span class="ident">reseed</span></span>(<span>self, anonymous_student_id=None, upseed=0)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Reseed the random seed to a specific value (used to recreate student data sets)</p></div>
@@ -509,14 +558,14 @@ e1=[
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def reseed(self, anonymous_student_id=None):
+<pre><code class="python">def reseed(self, anonymous_student_id=None, upseed=0):
     &#34;&#34;&#34;
     Reseed the random seed to a specific value (used to recreate student data sets)
     &#34;&#34;&#34;
     try:
-        randomseed = int(anonymous_student_id, 16)
+        randomseed = int(anonymous_student_id, 16)+upseed
     except:
-        randomseed = 1
+        randomseed = 1+upseed
     random.seed(randomseed)</code></pre>
 </details>
 </dd>
@@ -589,6 +638,7 @@ e1=[
 <li><code>n_digits</code>:<ul>
 <li>Type: int</li>
 <li>What: The number of digits to name returned variables with</li>
+<li>Default: 2</li>
 </ul>
 </li>
 </ul>
@@ -619,6 +669,7 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     - `n_digits`:
         - Type: int
         - What: The number of digits to name returned variables with
+        - Default: 2
 
     EG:
     ```
@@ -643,11 +694,27 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 </dd>
 <dt id="x_rand.x_rand.x_rand"><code class="flex name class">
 <span>class <span class="ident">x_rand</span></span>
+<span>(</span><span>upseed=0, infinite_random=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Randomization class with functions to enable randomization in edX</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>If the <code>anonymous_student_id</code> fails for some reason (eg: In testing or while staff) sets the random seed to 1</p></div>
+<p>Takes in:</p>
+<ul>
+<li><code>upseed</code>:<ul>
+<li>Type: int</li>
+<li>What: incremental value to increase the anonymous_student_id hash by</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>infinite_random</code>:<ul>
+<li>Type: bool</li>
+<li>What: Flag to generate a random upseed on every initialization of the problem</li>
+<li>Default: False</li>
+<li>Note: Overwrites any specified upseed</li>
+</ul>
+</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -865,22 +932,22 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class x_rand_admin:
-    def extended_functor(self, functor, x, aid):
+    def extended_functor(self, functor, x, aid, upseed):
         &#34;&#34;&#34;
         Internal function to allow list comprehension code to apply more complex operations like reseeding
         &#34;&#34;&#34;
-        x.reseed(anonymous_student_id=aid)
+        x.reseed(anonymous_student_id=aid, upseed=upseed)
         return functor(x, aid)
 
-    def recreate(self, functor, aids):
+    def recreate(self, functor, aids, upseed=0):
         &#34;&#34;&#34;
         Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
 
         Requires:
 
             - `functor`
-                Type: function
-                What: A function of any name that takes in two args of any name where:
+                - Type: function
+                - What: A function of any name that takes in two args of any name where:
                     - the first arg represents an x_rand instnace to be used for recreating data
                     - the second arg represents an anonymous_student_id to store
                     - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
@@ -889,6 +956,13 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
             - `aids`
                 - Type: list of strings
                 - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
+
+        Optional:
+
+            - `upseed`:
+                - Type: int
+                - What: The upseed used when generating the problem in edX
+                - Default: 0
 
         Example:
 
@@ -910,12 +984,12 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
         ```
         &#34;&#34;&#34;
         x=x_rand()
-        return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+        return [self.extended_functor(functor=functor, x=x, aid=aid, upseed=upseed) for aid in aids]</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
 <dt id="x_rand.x_rand.x_rand_admin.extended_functor"><code class="name flex">
-<span>def <span class="ident">extended_functor</span></span>(<span>self, functor, x, aid)</span>
+<span>def <span class="ident">extended_functor</span></span>(<span>self, functor, x, aid, upseed)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Internal function to allow list comprehension code to apply more complex operations like reseeding</p></div>
@@ -923,32 +997,45 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def extended_functor(self, functor, x, aid):
+<pre><code class="python">def extended_functor(self, functor, x, aid, upseed):
     &#34;&#34;&#34;
     Internal function to allow list comprehension code to apply more complex operations like reseeding
     &#34;&#34;&#34;
-    x.reseed(anonymous_student_id=aid)
+    x.reseed(anonymous_student_id=aid, upseed=upseed)
     return functor(x, aid)</code></pre>
 </details>
 </dd>
 <dt id="x_rand.x_rand.x_rand_admin.recreate"><code class="name flex">
-<span>def <span class="ident">recreate</span></span>(<span>self, functor, aids)</span>
+<span>def <span class="ident">recreate</span></span>(<span>self, functor, aids, upseed=0)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Given a <code>functor</code> and list of <code>aids</code> (anonymous_student_ids), returns a list of all student outputs</p>
 <h2 id="requires">Requires</h2>
 <ul>
-<li><code>functor</code>
-Type: function
-What: A function of any name that takes in two args of any name where:
-- the first arg represents an x_rand instnace to be used for recreating data
-- the second arg represents an anonymous_student_id to store
-- returns a dictionary of relevant output to be stored in a list and returned by this <code>recreate</code> function
-- Note: Order of randomization is important because of how random seeds
-- This function must match the randomization order as it was coded in edX</li>
+<li><code>functor</code><ul>
+<li>Type: function</li>
+<li>What: A function of any name that takes in two args of any name where:<ul>
+<li>the first arg represents an x_rand instnace to be used for recreating data</li>
+<li>the second arg represents an anonymous_student_id to store</li>
+<li>returns a dictionary of relevant output to be stored in a list and returned by this <code>recreate</code> function</li>
+<li>Note: Order of randomization is important because of how random seeds</li>
+<li>This function must match the randomization order as it was coded in edX</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><code>aids</code><ul>
 <li>Type: list of strings</li>
 <li>What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with</li>
+</ul>
+</li>
+</ul>
+<h2 id="optional">Optional</h2>
+<ul>
+<li><code>upseed</code>:<ul>
+<li>Type: int</li>
+<li>What: The upseed used when generating the problem in edX</li>
+<li>Default: 0</li>
 </ul>
 </li>
 </ul>
@@ -972,15 +1059,15 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def recreate(self, functor, aids):
+<pre><code class="python">def recreate(self, functor, aids, upseed=0):
     &#34;&#34;&#34;
     Given a `functor` and list of `aids` (anonymous_student_ids), returns a list of all student outputs
 
     Requires:
 
         - `functor`
-            Type: function
-            What: A function of any name that takes in two args of any name where:
+            - Type: function
+            - What: A function of any name that takes in two args of any name where:
                 - the first arg represents an x_rand instnace to be used for recreating data
                 - the second arg represents an anonymous_student_id to store
                 - returns a dictionary of relevant output to be stored in a list and returned by this `recreate` function
@@ -989,6 +1076,13 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
         - `aids`
             - Type: list of strings
             - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
+
+    Optional:
+
+        - `upseed`:
+            - Type: int
+            - What: The upseed used when generating the problem in edX
+            - Default: 0
 
     Example:
 
@@ -1010,7 +1104,7 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
     ```
     &#34;&#34;&#34;
     x=x_rand()
-    return [self.extended_functor(functor=functor, x=x, aid=aid) for aid in aids]</code></pre>
+    return [self.extended_functor(functor=functor, x=x, aid=aid, upseed=upseed) for aid in aids]</code></pre>
 </details>
 </dd>
 </dl>
