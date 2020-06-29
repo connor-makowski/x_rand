@@ -10,7 +10,6 @@ setup(
   url = 'https://github.com/connor-makowski/x_rand',
   download_url = 'https://github.com/connor-makowski/x_rand/blob/master/dist/x_rand-0.6.tar.gz',
   keywords = ['x_rand', 'edX', 'randomization', 'random', 'cheating', 'prevention', 'detection'],
-  install_requires=[],
   classifiers=[
     'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
