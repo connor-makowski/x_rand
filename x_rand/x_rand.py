@@ -19,6 +19,32 @@ class utils:
             - What: Flag to generate a random upseed on every initialization of the problem
             - Default: False
             - Note: Overwrites any specified upseed
+
+        EGs:
+
+        ```
+        data=[
+          ['a','b'],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(upseed=1)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
+
+        ```
+        data=[
+          ['a','b'],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(infinite_random=True)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         """
         try:
             anonymous_student_id = anonymous_student_id
@@ -152,6 +178,20 @@ class x_rand(utils):
         - input:
             - Type: list | tuple (as specified by self.formatter)
             - What: Input to select random choices from
+
+        EG:
+
+        ```
+        data=[
+          ['a','b'],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand()
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         """
         input=self.formatter(input)
         return random.choice(input)
@@ -174,6 +214,27 @@ class x_rand(utils):
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        data= [
+            ["text", "correct"],
+            ["A", "True"],
+            ["B", "True"],
+            ["1", "False"],
+            ["2", "False"],
+            ["3", "False"],
+            ["4", "False"]
+        ]
+
+        x=x_rand()
+        globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
+        print (text_00, correct_00)
+        print (text_01, correct_01)
+        print (text_02, correct_02)
+        print (text_03, correct_03)
+        ```
         """
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, 'True', n_true)+self.sample_if(input, correct_indicator, 'False', n_total-n_true)
@@ -191,6 +252,24 @@ class x_rand(utils):
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        males = [
+            ["male"],
+            ["Carter"],
+            ["John"],
+            ["Jose"],
+            ["Luke"],
+            ["Adam"],
+            ["Ahmed"]
+        ]
+
+        x=x_rand()
+        globals().update(x.fingerprint(males, n_total=2))
+        print(male_00, male_01)
+        ```
         """
         input=self.formatter(input)
         choices=random.sample(input, n_total)

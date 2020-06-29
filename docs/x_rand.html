@@ -45,6 +45,32 @@ class utils:
             - What: Flag to generate a random upseed on every initialization of the problem
             - Default: False
             - Note: Overwrites any specified upseed
+
+        EGs:
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(upseed=1)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(infinite_random=True)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         &#34;&#34;&#34;
         try:
             anonymous_student_id = anonymous_student_id
@@ -178,6 +204,20 @@ class x_rand(utils):
         - input:
             - Type: list | tuple (as specified by self.formatter)
             - What: Input to select random choices from
+
+        EG:
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand()
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         return random.choice(input)
@@ -200,6 +240,27 @@ class x_rand(utils):
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        data= [
+            [&#34;text&#34;, &#34;correct&#34;],
+            [&#34;A&#34;, &#34;True&#34;],
+            [&#34;B&#34;, &#34;True&#34;],
+            [&#34;1&#34;, &#34;False&#34;],
+            [&#34;2&#34;, &#34;False&#34;],
+            [&#34;3&#34;, &#34;False&#34;],
+            [&#34;4&#34;, &#34;False&#34;]
+        ]
+
+        x=x_rand()
+        globals().update(x.choices_random(data, correct_indicator=&#39;correct&#39;, n_true=1, n_total=4))
+        print (text_00, correct_00)
+        print (text_01, correct_01)
+        print (text_02, correct_02)
+        print (text_03, correct_03)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -217,6 +278,24 @@ class x_rand(utils):
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        males = [
+            [&#34;male&#34;],
+            [&#34;Carter&#34;],
+            [&#34;John&#34;],
+            [&#34;Jose&#34;],
+            [&#34;Luke&#34;],
+            [&#34;Adam&#34;],
+            [&#34;Ahmed&#34;]
+        ]
+
+        x=x_rand()
+        globals().update(x.fingerprint(males, n_total=2))
+        print(male_00, male_01)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=random.sample(input, n_total)
@@ -309,7 +388,28 @@ class x_rand_admin:
 <li>Note: Overwrites any specified upseed</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<p>EGs:</p>
+<pre><code>data=[
+  ['a','b'],
+  [1,2],
+  [2,4]
+]
+
+x=x_rand(upseed=1)
+globals().update(x.select_random(data))
+print(a, b)
+</code></pre>
+<pre><code>data=[
+  ['a','b'],
+  [1,2],
+  [2,4]
+]
+
+x=x_rand(infinite_random=True)
+globals().update(x.select_random(data))
+print(a, b)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -333,6 +433,32 @@ class x_rand_admin:
             - What: Flag to generate a random upseed on every initialization of the problem
             - Default: False
             - Note: Overwrites any specified upseed
+
+        EGs:
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(upseed=1)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand(infinite_random=True)
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         &#34;&#34;&#34;
         try:
             anonymous_student_id = anonymous_student_id
@@ -714,7 +840,28 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <li>Note: Overwrites any specified upseed</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<p>EGs:</p>
+<pre><code>data=[
+  ['a','b'],
+  [1,2],
+  [2,4]
+]
+
+x=x_rand(upseed=1)
+globals().update(x.select_random(data))
+print(a, b)
+</code></pre>
+<pre><code>data=[
+  ['a','b'],
+  [1,2],
+  [2,4]
+]
+
+x=x_rand(infinite_random=True)
+globals().update(x.select_random(data))
+print(a, b)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -732,6 +879,20 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
         - input:
             - Type: list | tuple (as specified by self.formatter)
             - What: Input to select random choices from
+
+        EG:
+
+        ```
+        data=[
+          [&#39;a&#39;,&#39;b&#39;],
+          [1,2],
+          [2,4]
+        ]
+
+        x=x_rand()
+        globals().update(x.select_random(data))
+        print(a, b)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         return random.choice(input)
@@ -754,6 +915,27 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        data= [
+            [&#34;text&#34;, &#34;correct&#34;],
+            [&#34;A&#34;, &#34;True&#34;],
+            [&#34;B&#34;, &#34;True&#34;],
+            [&#34;1&#34;, &#34;False&#34;],
+            [&#34;2&#34;, &#34;False&#34;],
+            [&#34;3&#34;, &#34;False&#34;],
+            [&#34;4&#34;, &#34;False&#34;]
+        ]
+
+        x=x_rand()
+        globals().update(x.choices_random(data, correct_indicator=&#39;correct&#39;, n_true=1, n_total=4))
+        print (text_00, correct_00)
+        print (text_01, correct_01)
+        print (text_02, correct_02)
+        print (text_03, correct_03)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -771,6 +953,24 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
         - n_total:
             - Type: int
             - What: Number of total answers to return
+
+        EG:
+
+        ```
+        males = [
+            [&#34;male&#34;],
+            [&#34;Carter&#34;],
+            [&#34;John&#34;],
+            [&#34;Jose&#34;],
+            [&#34;Luke&#34;],
+            [&#34;Adam&#34;],
+            [&#34;Ahmed&#34;]
+        ]
+
+        x=x_rand()
+        globals().update(x.fingerprint(males, n_total=2))
+        print(male_00, male_01)
+        ```
         &#34;&#34;&#34;
         input=self.formatter(input)
         choices=random.sample(input, n_total)
@@ -809,7 +1009,25 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <li>What: Number of total answers to return</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<p>EG:</p>
+<pre><code>data= [
+    [&quot;text&quot;, &quot;correct&quot;],
+    [&quot;A&quot;, &quot;True&quot;],
+    [&quot;B&quot;, &quot;True&quot;],
+    [&quot;1&quot;, &quot;False&quot;],
+    [&quot;2&quot;, &quot;False&quot;],
+    [&quot;3&quot;, &quot;False&quot;],
+    [&quot;4&quot;, &quot;False&quot;]
+]
+
+x=x_rand()
+globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
+print (text_00, correct_00)
+print (text_01, correct_01)
+print (text_02, correct_02)
+print (text_03, correct_03)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -832,6 +1050,27 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     - n_total:
         - Type: int
         - What: Number of total answers to return
+
+    EG:
+
+    ```
+    data= [
+        [&#34;text&#34;, &#34;correct&#34;],
+        [&#34;A&#34;, &#34;True&#34;],
+        [&#34;B&#34;, &#34;True&#34;],
+        [&#34;1&#34;, &#34;False&#34;],
+        [&#34;2&#34;, &#34;False&#34;],
+        [&#34;3&#34;, &#34;False&#34;],
+        [&#34;4&#34;, &#34;False&#34;]
+    ]
+
+    x=x_rand()
+    globals().update(x.choices_random(data, correct_indicator=&#39;correct&#39;, n_true=1, n_total=4))
+    print (text_00, correct_00)
+    print (text_01, correct_01)
+    print (text_02, correct_02)
+    print (text_03, correct_03)
+    ```
     &#34;&#34;&#34;
     input=self.formatter(input)
     choices=self.sample_if(input, correct_indicator, &#39;True&#39;, n_true)+self.sample_if(input, correct_indicator, &#39;False&#39;, n_total-n_true)
@@ -855,7 +1094,22 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <li>What: Number of total answers to return</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<p>EG:</p>
+<pre><code>males = [
+    [&quot;male&quot;],
+    [&quot;Carter&quot;],
+    [&quot;John&quot;],
+    [&quot;Jose&quot;],
+    [&quot;Luke&quot;],
+    [&quot;Adam&quot;],
+    [&quot;Ahmed&quot;]
+]
+
+x=x_rand()
+globals().update(x.fingerprint(males, n_total=2))
+print(male_00, male_01)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -872,6 +1126,24 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     - n_total:
         - Type: int
         - What: Number of total answers to return
+
+    EG:
+
+    ```
+    males = [
+        [&#34;male&#34;],
+        [&#34;Carter&#34;],
+        [&#34;John&#34;],
+        [&#34;Jose&#34;],
+        [&#34;Luke&#34;],
+        [&#34;Adam&#34;],
+        [&#34;Ahmed&#34;]
+    ]
+
+    x=x_rand()
+    globals().update(x.fingerprint(males, n_total=2))
+    print(male_00, male_01)
+    ```
     &#34;&#34;&#34;
     input=self.formatter(input)
     choices=random.sample(input, n_total)
@@ -890,7 +1162,18 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <li>What: Input to select random choices from</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<p>EG:</p>
+<pre><code>data=[
+  ['a','b'],
+  [1,2],
+  [2,4]
+]
+
+x=x_rand()
+globals().update(x.select_random(data))
+print(a, b)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -904,6 +1187,20 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     - input:
         - Type: list | tuple (as specified by self.formatter)
         - What: Input to select random choices from
+
+    EG:
+
+    ```
+    data=[
+      [&#39;a&#39;,&#39;b&#39;],
+      [1,2],
+      [2,4]
+    ]
+
+    x=x_rand()
+    globals().update(x.select_random(data))
+    print(a, b)
+    ```
     &#34;&#34;&#34;
     input=self.formatter(input)
     return random.choice(input)</code></pre>
