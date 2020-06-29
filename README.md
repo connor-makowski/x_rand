@@ -41,11 +41,10 @@ pip install x_rand
   ```
 
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-  - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - To do this use the `globals().update()` function
   - Then randomly select a row out of that data
   ```
-  globalize=lambda x: globals().update(x)
-  globalize(x.select_random(data))
+  globals().update(x.select_random(data))
   ```
   - Note: Column headers from your data are now available to be called as variables globally. If the first row of data was selected:
   ```
@@ -68,9 +67,8 @@ data=[
   [2,4]
 ]
 
-globalize=lambda x: globals().update(x)
 x=x_rand()
-globalize(x.select_random(data))
+globals().update(x.select_random(data))
 
 ]]>
 </script>
@@ -103,11 +101,11 @@ globalize(x.select_random(data))
   ]
   ```
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-  - To do this use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - To do this use a the `globals().update()` function
   - Randomly select four (`n_total=4`) answers where one (`n_true=1`) answer is true (specified as the `correct` column by `correct_indicator='correct'`):
   ```
-  globalize=lambda x: globals().update(x)
-  globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
+
+  globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
   ```
   - Note: You can now call each of your column headers in the order in which they were randomly selected from `00` to `n_total-1`:
   ```
@@ -140,9 +138,8 @@ data= [
     ["4", "False"]
 ]
 
-globalize=lambda x: globals().update(x)
 x=x_rand()
-globalize(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
+globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
 
 ]]>
 </script>
@@ -193,12 +190,11 @@ To fingerprint a problem.
   ]
   ```
 3) To use the variables in edX problems, you have to create relevant variables and make them global:
-  - To do this, use a simple `globalize` function `globalize=lambda x: globals().update(x)`
+  - To do this, use a simple `globals().update()` function
   - Randomly select and shuffle four (`n_total=4`) female names and four (`n_total=4`) male names:
   ```
-  globalize=lambda x: globals().update(x)
-  globalize(x.fingerprint(females, n_total=4))
-  globalize(x.fingerprint(males, n_total=4))
+  globals().update(x.fingerprint(females, n_total=4))
+  globals().update(x.fingerprint(males, n_total=4))
   ```
   - Note: You can now call each of your column headers in the order in which they were randomly selected from `00` to `n_total-1`:
   ```
@@ -233,10 +229,9 @@ males = [
     ["Ahmed"]
 ]
 
-globalize=lambda x: globals().update(x)
 x=x_rand()
-globalize(x.fingerprint(females, n_total=4))
-globalize(x.fingerprint(males, n_total=4))
+globals().update(x.fingerprint(females, n_total=4))
+globals().update(x.fingerprint(males, n_total=4))
 
 ]]>
 </script>
@@ -251,7 +246,8 @@ globalize(x.fingerprint(males, n_total=4))
 </problem>
 ```
 
-
+### Recreating Student data
+See `./example.py` and `./admin_example.py` for an example on how to recreate student data on your local machine.
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job.)

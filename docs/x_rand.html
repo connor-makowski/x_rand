@@ -56,9 +56,9 @@ class utils:
         &#34;&#34;&#34;
         Takes in:
 
-            `input`:
-                Type: a (list | tuple) of (lists | tuples | dictionaries)
-                What: data to format
+        - `input`:
+            - Type: a (list | tuple) of (lists | tuples | dictionaries)
+            - What: data to format
 
         Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
@@ -127,12 +127,12 @@ class utils:
 
         Takes in:
 
-            - `dict_list`:
-                - Type: list of dictionaries (output of self.formatter)
-                - What: The list of dictionaries to shuffle in place
-            - `n_digits`:
-                - Type: int
-                - What: The number of digits to name returned variables with
+        - `dict_list`:
+            - Type: list of dictionaries (output of self.formatter)
+            - What: The list of dictionaries to shuffle in place
+        - `n_digits`:
+            - Type: int
+            - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -232,7 +232,7 @@ class x_rand_admin:
                     - Note: Order of randomization is important because of how random seeds
                     - This function must match the randomization order as it was coded in edX
             - `aids`
-                - Type: list of strings 
+                - Type: list of strings
                 - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
@@ -308,9 +308,9 @@ class x_rand_admin:
         &#34;&#34;&#34;
         Takes in:
 
-            `input`:
-                Type: a (list | tuple) of (lists | tuples | dictionaries)
-                What: data to format
+        - `input`:
+            - Type: a (list | tuple) of (lists | tuples | dictionaries)
+            - What: data to format
 
         Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
@@ -379,12 +379,12 @@ class x_rand_admin:
 
         Takes in:
 
-            - `dict_list`:
-                - Type: list of dictionaries (output of self.formatter)
-                - What: The list of dictionaries to shuffle in place
-            - `n_digits`:
-                - Type: int
-                - What: The number of digits to name returned variables with
+        - `dict_list`:
+            - Type: list of dictionaries (output of self.formatter)
+            - What: The list of dictionaries to shuffle in place
+        - `n_digits`:
+            - Type: int
+            - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -415,10 +415,13 @@ class x_rand_admin:
 </code></dt>
 <dd>
 <div class="desc"><p>Takes in:</p>
-<pre><code>&lt;code&gt;input&lt;/code&gt;:
-    Type: a (list | tuple) of (lists | tuples | dictionaries)
-    What: data to format
-</code></pre>
+<ul>
+<li><code>input</code>:<ul>
+<li>Type: a (list | tuple) of (lists | tuples | dictionaries)</li>
+<li>What: data to format</li>
+</ul>
+</li>
+</ul>
 <p>Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values</p>
 <p>The following inputs give equivalent outputs:</p>
 <pre><code>e1=[
@@ -452,9 +455,9 @@ e1=[
     &#34;&#34;&#34;
     Takes in:
 
-        `input`:
-            Type: a (list | tuple) of (lists | tuples | dictionaries)
-            What: data to format
+    - `input`:
+        - Type: a (list | tuple) of (lists | tuples | dictionaries)
+        - What: data to format
 
     Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
@@ -577,13 +580,18 @@ e1=[
 <dd>
 <div class="desc"><p>Returns a single dictionary with stacked (numerically with n_digits starting at all zeros) renamed values.</p>
 <p>Takes in:</p>
-<pre><code>- &lt;code&gt;dict\_list&lt;/code&gt;:
-    - Type: list of dictionaries (output of self.formatter)
-    - What: The list of dictionaries to shuffle in place
-- &lt;code&gt;n\_digits&lt;/code&gt;:
-    - Type: int
-    - What: The number of digits to name returned variables with
-</code></pre>
+<ul>
+<li><code>dict_list</code>:<ul>
+<li>Type: list of dictionaries (output of self.formatter)</li>
+<li>What: The list of dictionaries to shuffle in place</li>
+</ul>
+</li>
+<li><code>n_digits</code>:<ul>
+<li>Type: int</li>
+<li>What: The number of digits to name returned variables with</li>
+</ul>
+</li>
+</ul>
 <p>EG:</p>
 <pre><code>e1=[
 {'a':1, 'b':2},
@@ -605,12 +613,12 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 
     Takes in:
 
-        - `dict_list`:
-            - Type: list of dictionaries (output of self.formatter)
-            - What: The list of dictionaries to shuffle in place
-        - `n_digits`:
-            - Type: int
-            - What: The number of digits to name returned variables with
+    - `dict_list`:
+        - Type: list of dictionaries (output of self.formatter)
+        - What: The list of dictionaries to shuffle in place
+    - `n_digits`:
+        - Type: int
+        - What: The number of digits to name returned variables with
 
     EG:
     ```
@@ -879,7 +887,7 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
                     - Note: Order of randomization is important because of how random seeds
                     - This function must match the randomization order as it was coded in edX
             - `aids`
-                - Type: list of strings 
+                - Type: list of strings
                 - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
@@ -939,7 +947,7 @@ What: A function of any name that takes in two args of any name where:
 - Note: Order of randomization is important because of how random seeds
 - This function must match the randomization order as it was coded in edX</li>
 <li><code>aids</code><ul>
-<li>Type: list of strings </li>
+<li>Type: list of strings</li>
 <li>What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with</li>
 </ul>
 </li>
@@ -979,7 +987,7 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
                 - Note: Order of randomization is important because of how random seeds
                 - This function must match the randomization order as it was coded in edX
         - `aids`
-            - Type: list of strings 
+            - Type: list of strings
             - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
     Example:

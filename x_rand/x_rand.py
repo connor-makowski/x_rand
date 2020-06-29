@@ -30,9 +30,9 @@ class utils:
         """
         Takes in:
 
-            `input`:
-                Type: a (list | tuple) of (lists | tuples | dictionaries)
-                What: data to format
+        - `input`:
+            - Type: a (list | tuple) of (lists | tuples | dictionaries)
+            - What: data to format
 
         Checks if the first element of a data set is a list or a tuple and if so, converts it to a list of dictionaries that use the headers in the first row as assigned values
 
@@ -101,12 +101,12 @@ class utils:
 
         Takes in:
 
-            - `dict_list`:
-                - Type: list of dictionaries (output of self.formatter)
-                - What: The list of dictionaries to shuffle in place
-            - `n_digits`:
-                - Type: int
-                - What: The number of digits to name returned variables with
+        - `dict_list`:
+            - Type: list of dictionaries (output of self.formatter)
+            - What: The list of dictionaries to shuffle in place
+        - `n_digits`:
+            - Type: int
+            - What: The number of digits to name returned variables with
 
         EG:
         ```
@@ -206,7 +206,7 @@ class x_rand_admin:
                     - Note: Order of randomization is important because of how random seeds
                     - This function must match the randomization order as it was coded in edX
             - `aids`
-                - Type: list of strings 
+                - Type: list of strings
                 - What: A list of anonymous_student_ids (16 digit string of hex characters) to recreate data with
 
         Example:
