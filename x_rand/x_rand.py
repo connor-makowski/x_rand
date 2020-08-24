@@ -47,12 +47,12 @@ class utils:
         ```
         """
         try:
-            anonymous_student_id = anonymous_student_id
+            self.anonymous_student_id = anonymous_student_id
         except:
-            anonymous_student_id = None
+            self.anonymous_student_id = None
         if infinite_random:
             upseed=random.uniform(1,1000000)
-        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
+        self.reseed(anonymous_student_id=self.anonymous_student_id, upseed=upseed)
 
     def reseed(self, anonymous_student_id=None, upseed=0):
         """
@@ -162,8 +162,30 @@ class utils:
         {'a_00':1, 'b_00':2, 'a_01':3, 'b_01':4}
         ```
         """
+        random_state=random.getstate()
+        self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
         random.shuffle(dict_list) # Note: Random shuffle happens in place
+        random.setstate(random_state)
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+    def hash(self, string):
+        """
+        Returns a consistent hash like (positive integer) of an object given a string.
+
+        Used to access a non random hash like function since none are available in edX by default
+
+        EG:
+
+        ```
+        x=str({'a':1})
+        ```
+
+        Would consistently return:
+        ```
+        3843346
+        ```
+        """
+        return sum([int(format(ord(x), 'b')) for x in string])
 
 class x_rand(utils):
     """

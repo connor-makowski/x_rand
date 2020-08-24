@@ -3,12 +3,12 @@ import random
 class utils:
     def __init__(self, upseed=0, infinite_random=False):
         try:
-            anonymous_student_id = anonymous_student_id
+            self.anonymous_student_id = anonymous_student_id
         except:
-            anonymous_student_id = None
+            self.anonymous_student_id = None
         if infinite_random:
             upseed=random.uniform(1,1000000)
-        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
+        self.reseed(anonymous_student_id=self.anonymous_student_id, upseed=upseed)
 
     def reseed(self, anonymous_student_id=None, upseed=0):
         try:
@@ -27,8 +27,14 @@ class utils:
         return random.sample([input[i] for i in range(len(input)) if (string in input[i][variable])], sample_size)
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
-        random.shuffle(dict_list) # Note: Random shuffle happens in place
+        random_state=random.getstate()
+        self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
+        random.shuffle(dict_list)
+        random.setstate(random_state)
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+    def hash(self, string):
+        return sum([int(format(ord(x), 'b')) for x in string])
 
 class x_rand(utils):
     def select_random(self, input):
