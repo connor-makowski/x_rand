@@ -73,12 +73,12 @@ class utils:
         ```
         &#34;&#34;&#34;
         try:
-            anonymous_student_id = anonymous_student_id
+            self.anonymous_student_id = anonymous_student_id
         except:
-            anonymous_student_id = None
+            self.anonymous_student_id = None
         if infinite_random:
             upseed=random.uniform(1,1000000)
-        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
+        self.reseed(anonymous_student_id=self.anonymous_student_id, upseed=upseed)
 
     def reseed(self, anonymous_student_id=None, upseed=0):
         &#34;&#34;&#34;
@@ -188,8 +188,30 @@ class utils:
         {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
         ```
         &#34;&#34;&#34;
+        random_state=random.getstate()
+        self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
         random.shuffle(dict_list) # Note: Random shuffle happens in place
+        random.setstate(random_state)
         return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+    def hash(self, string):
+        &#34;&#34;&#34;
+        Returns a consistent hash like (positive integer) of an object given a string.
+
+        Used to access a non random hash like function since none are available in edX by default
+
+        EG:
+
+        ```
+        x=str({&#39;a&#39;:1})
+        ```
+
+        Would consistently return:
+        ```
+        3843346
+        ```
+        &#34;&#34;&#34;
+        return sum([int(format(ord(x), &#39;b&#39;)) for x in string])
 
 class x_rand(utils):
     &#34;&#34;&#34;
@@ -461,12 +483,12 @@ print(a, b)
         ```
         &#34;&#34;&#34;
         try:
-            anonymous_student_id = anonymous_student_id
+            self.anonymous_student_id = anonymous_student_id
         except:
-            anonymous_student_id = None
+            self.anonymous_student_id = None
         if infinite_random:
             upseed=random.uniform(1,1000000)
-        self.reseed(anonymous_student_id=anonymous_student_id, upseed=upseed)
+        self.reseed(anonymous_student_id=self.anonymous_student_id, upseed=upseed)
 
     def reseed(self, anonymous_student_id=None, upseed=0):
         &#34;&#34;&#34;
@@ -576,8 +598,30 @@ print(a, b)
         {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
         ```
         &#34;&#34;&#34;
+        random_state=random.getstate()
+        self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
         random.shuffle(dict_list) # Note: Random shuffle happens in place
-        return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}</code></pre>
+        random.setstate(random_state)
+        return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
+
+    def hash(self, string):
+        &#34;&#34;&#34;
+        Returns a consistent hash like (positive integer) of an object given a string.
+
+        Used to access a non random hash like function since none are available in edX by default
+
+        EG:
+
+        ```
+        x=str({&#39;a&#39;:1})
+        ```
+
+        Would consistently return:
+        ```
+        3843346
+        ```
+        &#34;&#34;&#34;
+        return sum([int(format(ord(x), &#39;b&#39;)) for x in string])</code></pre>
 </details>
 <h3>Subclasses</h3>
 <ul class="hlist">
@@ -673,6 +717,42 @@ e1=[
         return [dict(zip(input[0],row)) for row in input[1:]]
     else:
         return input</code></pre>
+</details>
+</dd>
+<dt id="x_rand.x_rand.utils.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self, string)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a consistent hash like (positive integer) of an object given a string.</p>
+<p>Used to access a non random hash like function since none are available in edX by default</p>
+<p>EG:</p>
+<pre><code>x=str({'a':1})
+</code></pre>
+<p>Would consistently return:</p>
+<pre><code>3843346
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hash(self, string):
+    &#34;&#34;&#34;
+    Returns a consistent hash like (positive integer) of an object given a string.
+
+    Used to access a non random hash like function since none are available in edX by default
+
+    EG:
+
+    ```
+    x=str({&#39;a&#39;:1})
+    ```
+
+    Would consistently return:
+    ```
+    3843346
+    ```
+    &#34;&#34;&#34;
+    return sum([int(format(ord(x), &#39;b&#39;)) for x in string])</code></pre>
 </details>
 </dd>
 <dt id="x_rand.x_rand.utils.reseed"><code class="name flex">
@@ -812,7 +892,10 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
     {&#39;a_00&#39;:1, &#39;b_00&#39;:2, &#39;a_01&#39;:3, &#39;b_01&#39;:4}
     ```
     &#34;&#34;&#34;
+    random_state=random.getstate()
+    self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
     random.shuffle(dict_list) # Note: Random shuffle happens in place
+    random.setstate(random_state)
     return {str(key)+&#39;_&#39;+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}</code></pre>
 </details>
 </dd>
@@ -1212,6 +1295,7 @@ print(a, b)
 <li><code><b><a title="x_rand.x_rand.utils" href="#x_rand.x_rand.utils">utils</a></b></code>:
 <ul class="hlist">
 <li><code><a title="x_rand.x_rand.utils.formatter" href="#x_rand.x_rand.utils.formatter">formatter</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.hash" href="#x_rand.x_rand.utils.hash">hash</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.reseed" href="#x_rand.x_rand.utils.reseed">reseed</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.sample_if" href="#x_rand.x_rand.utils.sample_if">sample_if</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically" href="#x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">shuffle_and_stack_dicts_numerically</a></code></li>
@@ -1426,6 +1510,7 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
 <h4><code><a title="x_rand.x_rand.utils" href="#x_rand.x_rand.utils">utils</a></code></h4>
 <ul class="">
 <li><code><a title="x_rand.x_rand.utils.formatter" href="#x_rand.x_rand.utils.formatter">formatter</a></code></li>
+<li><code><a title="x_rand.x_rand.utils.hash" href="#x_rand.x_rand.utils.hash">hash</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.reseed" href="#x_rand.x_rand.utils.reseed">reseed</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.sample_if" href="#x_rand.x_rand.utils.sample_if">sample_if</a></code></li>
 <li><code><a title="x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically" href="#x_rand.x_rand.utils.shuffle_and_stack_dicts_numerically">shuffle_and_stack_dicts_numerically</a></code></li>
