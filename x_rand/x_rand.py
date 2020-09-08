@@ -9,6 +9,7 @@ class utils:
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
+        
         - `anonymous_student_id`:
             - Type: hex int
             - What: edX AID
