@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'x_rand',
   packages = ['x_rand'],
-  version = '0.8',
+  version = '0.9',
   license='MIT',
   description = 'Random Problem Creation for edX',
   author = 'Connor Makowski',

@@ -30,12 +30,15 @@ class utils:
     &#34;&#34;&#34;
     Utilities to support the main x_rand functions
     &#34;&#34;&#34;
-    def __init__(self, upseed=0, infinite_random=False):
+    def __init__(self, anonymous_student_id=None, upseed=0, infinite_random=False):
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
-
+        - `anonymous_student_id`:
+            - Type: hex int
+            - What: edX AID
+            - Default: 0
         - `upseed`:
             - Type: int
             - What: incremental value to increase the anonymous_student_id hash by
@@ -55,7 +58,7 @@ class utils:
           [2,4]
         ]
 
-        x=x_rand(upseed=1)
+        x=x_rand(anonymous_student_id, upseed=1)
         globals().update(x.select_random(data))
         print(a, b)
         ```
@@ -390,27 +393,25 @@ class x_rand_admin:
 <dl>
 <dt id="x_rand.x_rand.utils"><code class="flex name class">
 <span>class <span class="ident">utils</span></span>
-<span>(</span><span>upseed=0, infinite_random=False)</span>
+<span>(</span><span>anonymous_student_id=None, upseed=0, infinite_random=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Utilities to support the main x_rand functions</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>Takes in:</p>
-<ul>
-<li><code>upseed</code>:<ul>
-<li>Type: int</li>
-<li>What: incremental value to increase the anonymous_student_id hash by</li>
-<li>Default: 0</li>
-</ul>
-</li>
-<li><code>infinite_random</code>:<ul>
-<li>Type: bool</li>
-<li>What: Flag to generate a random upseed on every initialization of the problem</li>
-<li>Default: False</li>
-<li>Note: Overwrites any specified upseed</li>
-</ul>
-</li>
-</ul>
+<p>Takes in:
+- <code>anonymous_student_id</code>:
+- Type: hex int
+- What: edX AID
+- Default: 0
+- <code>upseed</code>:
+- Type: int
+- What: incremental value to increase the anonymous_student_id hash by
+- Default: 0
+- <code>infinite_random</code>:
+- Type: bool
+- What: Flag to generate a random upseed on every initialization of the problem
+- Default: False
+- Note: Overwrites any specified upseed</p>
 <p>EGs:</p>
 <pre><code>data=[
   ['a','b'],
@@ -418,7 +419,7 @@ class x_rand_admin:
   [2,4]
 ]
 
-x=x_rand(upseed=1)
+x=x_rand(anonymous_student_id, upseed=1)
 globals().update(x.select_random(data))
 print(a, b)
 </code></pre>
@@ -440,12 +441,15 @@ print(a, b)
     &#34;&#34;&#34;
     Utilities to support the main x_rand functions
     &#34;&#34;&#34;
-    def __init__(self, upseed=0, infinite_random=False):
+    def __init__(self, anonymous_student_id=None, upseed=0, infinite_random=False):
         &#34;&#34;&#34;
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
-
+        - `anonymous_student_id`:
+            - Type: hex int
+            - What: edX AID
+            - Default: 0
         - `upseed`:
             - Type: int
             - What: incremental value to increase the anonymous_student_id hash by
@@ -465,7 +469,7 @@ print(a, b)
           [2,4]
         ]
 
-        x=x_rand(upseed=1)
+        x=x_rand(anonymous_student_id, upseed=1)
         globals().update(x.select_random(data))
         print(a, b)
         ```
@@ -903,27 +907,25 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 </dd>
 <dt id="x_rand.x_rand.x_rand"><code class="flex name class">
 <span>class <span class="ident">x_rand</span></span>
-<span>(</span><span>upseed=0, infinite_random=False)</span>
+<span>(</span><span>anonymous_student_id=None, upseed=0, infinite_random=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Randomization class with functions to enable randomization in edX</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>Takes in:</p>
-<ul>
-<li><code>upseed</code>:<ul>
-<li>Type: int</li>
-<li>What: incremental value to increase the anonymous_student_id hash by</li>
-<li>Default: 0</li>
-</ul>
-</li>
-<li><code>infinite_random</code>:<ul>
-<li>Type: bool</li>
-<li>What: Flag to generate a random upseed on every initialization of the problem</li>
-<li>Default: False</li>
-<li>Note: Overwrites any specified upseed</li>
-</ul>
-</li>
-</ul>
+<p>Takes in:
+- <code>anonymous_student_id</code>:
+- Type: hex int
+- What: edX AID
+- Default: 0
+- <code>upseed</code>:
+- Type: int
+- What: incremental value to increase the anonymous_student_id hash by
+- Default: 0
+- <code>infinite_random</code>:
+- Type: bool
+- What: Flag to generate a random upseed on every initialization of the problem
+- Default: False
+- Note: Overwrites any specified upseed</p>
 <p>EGs:</p>
 <pre><code>data=[
   ['a','b'],
@@ -931,7 +933,7 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
   [2,4]
 ]
 
-x=x_rand(upseed=1)
+x=x_rand(anonymous_student_id, upseed=1)
 globals().update(x.select_random(data))
 print(a, b)
 </code></pre>

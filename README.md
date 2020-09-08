@@ -26,9 +26,9 @@ pip install x_rand
 
 
 ### Example Random mathematical problem
-1) Initialize an `x_rand` variable:
+1) Initialize an `x_rand` variable with the current student AID:
   ```
-  x=x_rand()
+  x=x_rand(anonymous_student_id)
   ```
 
 2) Input data:
@@ -67,7 +67,7 @@ data=[
   [2,4]
 ]
 
-x=x_rand()
+x=x_rand(anonymous_student_id)
 globals().update(x.select_random(data))
 
 ]]>
@@ -83,9 +83,9 @@ globals().update(x.select_random(data))
 
 
 ### Example Random multiple choice or checkbox problem
-1) Initialize an `x_rand` variable:
+1) Initialize an `x_rand` variable with the current student AID:
   ```
-  x=x_rand()
+  x=x_rand(anonymous_student_id)
   ```
 
 2) Input data:
@@ -138,7 +138,7 @@ data= [
     ["4", "False"]
 ]
 
-x=x_rand()
+x=x_rand(anonymous_student_id)
 globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
 
 ]]>
@@ -163,9 +163,9 @@ This can be used to identify students that post exam problems to outside website
 While not guaranteed to be unique, large enough lists with sufficient numbers of selected values can almost guarantee a unique result per student.
 
 To fingerprint a problem.
-1) Initialize an `x_rand` variable:
+1) Initialize an `x_rand` variable with the current student AID:
   ```
-  x=x_rand()
+  x=x_rand(anonymous_student_id)
   ```
 
 2) Input data:
@@ -229,7 +229,7 @@ males = [
     ["Ahmed"]
 ]
 
-x=x_rand()
+x=x_rand(anonymous_student_id)
 globals().update(x.fingerprint(females, n_total=4))
 globals().update(x.fingerprint(males, n_total=4))
 

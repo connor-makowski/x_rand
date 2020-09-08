@@ -4,12 +4,15 @@ class utils:
     """
     Utilities to support the main x_rand functions
     """
-    def __init__(self, upseed=0, infinite_random=False):
+    def __init__(self, anonymous_student_id=None, upseed=0, infinite_random=False):
         """
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
-
+        - `anonymous_student_id`:
+            - Type: hex int
+            - What: edX AID
+            - Default: 0
         - `upseed`:
             - Type: int
             - What: incremental value to increase the anonymous_student_id hash by
@@ -29,7 +32,7 @@ class utils:
           [2,4]
         ]
 
-        x=x_rand(upseed=1)
+        x=x_rand(anonymous_student_id, upseed=1)
         globals().update(x.select_random(data))
         print(a, b)
         ```

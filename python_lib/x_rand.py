@@ -1,7 +1,7 @@
 import random
 
 class utils:
-    def __init__(self, upseed=0, infinite_random=False):
+    def __init__(self, anonymous_student_id=None, upseed=0, infinite_random=False):
         try:
             self.anonymous_student_id = anonymous_student_id
         except:
@@ -50,12 +50,3 @@ class x_rand(utils):
         input=self.formatter(input)
         choices=random.sample(input, n_total)
         return self.shuffle_and_stack_dicts_numerically(choices)
-
-class x_rand_admin:
-    def extended_functor(self, functor, x, aid, upseed):
-        x.reseed(anonymous_student_id=aid, upseed=upseed)
-        return functor(x, aid)
-
-    def recreate(self, functor, aids, upseed=0):
-        x=x_rand()
-        return [self.extended_functor(functor=functor, x=x, aid=aid, upseed=upseed) for aid in aids]
