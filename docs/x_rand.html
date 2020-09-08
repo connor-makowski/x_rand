@@ -35,6 +35,7 @@ class utils:
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
+        
         - `anonymous_student_id`:
             - Type: hex int
             - What: edX AID
@@ -398,20 +399,28 @@ class x_rand_admin:
 <dd>
 <div class="desc"><p>Utilities to support the main x_rand functions</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>Takes in:
-- <code>anonymous_student_id</code>:
-- Type: hex int
-- What: edX AID
-- Default: 0
-- <code>upseed</code>:
-- Type: int
-- What: incremental value to increase the anonymous_student_id hash by
-- Default: 0
-- <code>infinite_random</code>:
-- Type: bool
-- What: Flag to generate a random upseed on every initialization of the problem
-- Default: False
-- Note: Overwrites any specified upseed</p>
+<p>Takes in:</p>
+<ul>
+<li><code>anonymous_student_id</code>:<ul>
+<li>Type: hex int</li>
+<li>What: edX AID</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>upseed</code>:<ul>
+<li>Type: int</li>
+<li>What: incremental value to increase the anonymous_student_id hash by</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>infinite_random</code>:<ul>
+<li>Type: bool</li>
+<li>What: Flag to generate a random upseed on every initialization of the problem</li>
+<li>Default: False</li>
+<li>Note: Overwrites any specified upseed</li>
+</ul>
+</li>
+</ul>
 <p>EGs:</p>
 <pre><code>data=[
   ['a','b'],
@@ -446,6 +455,7 @@ print(a, b)
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
+        
         - `anonymous_student_id`:
             - Type: hex int
             - What: edX AID
@@ -912,20 +922,28 @@ self.shuffle_and_stack_dicts_numerically(e1, n_digits=2)
 <dd>
 <div class="desc"><p>Randomization class with functions to enable randomization in edX</p>
 <p>Attempts to pull the anonymous_student_id if it exists and set it as the random seed</p>
-<p>Takes in:
-- <code>anonymous_student_id</code>:
-- Type: hex int
-- What: edX AID
-- Default: 0
-- <code>upseed</code>:
-- Type: int
-- What: incremental value to increase the anonymous_student_id hash by
-- Default: 0
-- <code>infinite_random</code>:
-- Type: bool
-- What: Flag to generate a random upseed on every initialization of the problem
-- Default: False
-- Note: Overwrites any specified upseed</p>
+<p>Takes in:</p>
+<ul>
+<li><code>anonymous_student_id</code>:<ul>
+<li>Type: hex int</li>
+<li>What: edX AID</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>upseed</code>:<ul>
+<li>Type: int</li>
+<li>What: incremental value to increase the anonymous_student_id hash by</li>
+<li>Default: 0</li>
+</ul>
+</li>
+<li><code>infinite_random</code>:<ul>
+<li>Type: bool</li>
+<li>What: Flag to generate a random upseed on every initialization of the problem</li>
+<li>Default: False</li>
+<li>Note: Overwrites any specified upseed</li>
+</ul>
+</li>
+</ul>
 <p>EGs:</p>
 <pre><code>data=[
   ['a','b'],
