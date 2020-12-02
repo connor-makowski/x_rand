@@ -1,4 +1,5 @@
 from x_rand import x_rand_admin
+from pprint import pp as print
 
 e1=[
     ['a','b'],
