@@ -12,6 +12,7 @@ with open('profile_info.csv', 'r') as f:
 
 aids=profile_data.keys()
 
+# Copy your data here
 data=[
     ['a','b'],
     [1,2],
@@ -20,7 +21,7 @@ data=[
 
 # Functor
 def randomization_process(x, aid):
-    out={k:v for k, v in x.select_random(input=data).items()}
+    out=x.select_random(input=data)
     out['aid']=aid
     out['profile_data']=profile_data[aid]
     return out

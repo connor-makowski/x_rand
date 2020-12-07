@@ -24,7 +24,8 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import random
+<pre><code class="python"># special import since edX uses random2 as random
+import random2 as random
 
 class utils:
     &#34;&#34;&#34;
@@ -35,7 +36,7 @@ class utils:
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
-        
+
         - `anonymous_student_id`:
             - Type: hex int
             - What: edX AID
@@ -455,7 +456,7 @@ print(a, b)
         Attempts to pull the anonymous_student_id if it exists and set it as the random seed
 
         Takes in:
-        
+
         - `anonymous_student_id`:
             - Type: hex int
             - What: edX AID

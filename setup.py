@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
   name = 'x_rand',
   packages = ['x_rand'],
-  version = '0.9',
+  version = '0.10',
   license='MIT',
   description = 'Random Problem Creation for edX',
   author = 'Connor Makowski',
   author_email = 'connor.m.makowski@gmail.com',
   url = 'https://github.com/connor-makowski/x_rand',
-  download_url = 'https://github.com/connor-makowski/x_rand/blob/master/dist/x_rand-0.8.tar.gz',
+  download_url = 'https://github.com/connor-makowski/x_rand/blob/master/dist/x_rand-0.10.tar.gz',
   keywords = ['x_rand', 'edX', 'randomization', 'random', 'cheating', 'prevention', 'detection'],
   classifiers=[
     'Development Status :: 3 - Alpha',
@@ -18,4 +18,7 @@ setup(
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 2.7',
   ],
+  install_requires=[
+          'random2>=1',
+      ],
 )
