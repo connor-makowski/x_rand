@@ -9,7 +9,15 @@ Randomization package for [edX] courses
   - Randomize checkbox problems on edX
 
 ## API Documentation
-The [full api documentation](https://connor-makowski.github.io/x_rand/x_rand.html) can be found [here](https://connor-makowski.github.io/x_rand/x_rand.html).
+The [full api documentation](https://connor-makowski.github.io/x_rand/x_rand.html) for x_rand2 can be found [here](https://connor-makowski.github.io/x_rand/x_rand.html).
+
+## Compatibility
+
+For Compatibility purposes, x_rand has multiple x_rand packages. All github documentation refers to the most recent version of x_rand which is x_rand2
+
+All versions API documentation can be found in the links below:
+- x_rand: https://connor-makowski.github.io/x_rand/x_rand/x_rand.html
+- x_rand2: https://connor-makowski.github.io/x_rand/x_rand2/x_rand.html
 
 ### Installation For use in edX
 Upload the `python_lib.zip` file to your edX course.
