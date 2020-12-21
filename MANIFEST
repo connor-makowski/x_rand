@@ -4,3 +4,5 @@ setup.cfg
 setup.py
 x_rand/__init__.py
 x_rand/x_rand.py
+x_rand2/__init__.py
+x_rand2/x_rand.py
