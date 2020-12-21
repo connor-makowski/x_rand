@@ -32,7 +32,6 @@ def randomization_process(aid):
     x=x_rand(anonymous_student_id=aid, upseed=1)
     out=x.fingerprint(N09, n_total=5)
     out['aid']=aid
-    print (out)
     out['profile_data']=profile_data[aid]
     return out
 
