@@ -1,4 +1,4 @@
-from x_rand.x_rand import x_rand
+from x_rand2 import x_rand
 
 data=[
   ['a','b'],

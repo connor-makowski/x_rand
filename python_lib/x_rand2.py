@@ -9,11 +9,14 @@ class utils:
             self.anonymous_student_id = None
         if infinite_random:
             upseed=random.uniform(1,1000000)
-        self.reseed(anonymous_student_id=self.anonymous_student_id, upseed=upseed)
+        self.upseed=upseed
+        self.reseed()
 
-    def reseed(self, anonymous_student_id=None, upseed=0):
+    def reseed(self, upseed=None):
+        if upseed is None:
+            upseed=self.upseed
         try:
-            randomseed = int(anonymous_student_id, 16)+upseed
+            randomseed = int(self.anonymous_student_id, 16)+upseed
         except:
             randomseed = 1+upseed
         random.seed(randomseed)
@@ -29,13 +32,10 @@ class utils:
 
     def shuffle_and_stack_dicts_numerically(self, dict_list, n_digits=2):
         random_state=random.getstate()
-        self.reseed(self.anonymous_student_id, upseed=self.hash(str(dict_list)))
-        random.shuffle(dict_list)
+        self.reseed()
+        random.shuffle(dict_list) # Note: Random shuffle happens in place
         random.setstate(random_state)
         return {str(key)+'_'+str(i).zfill(n_digits): dict_list[i][key] for i in range(len(dict_list)) for key in dict_list[i]}
-
-    def hash(self, string):
-        return sum([int(format(ord(x), 'b')) for x in string])
 
 class x_rand(utils):
     def select_random(self, input):

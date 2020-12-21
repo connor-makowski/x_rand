@@ -27,8 +27,9 @@ pip install x_rand
 
 ### Example Random mathematical problem
 1) Initialize an `x_rand` variable with the current student AID:
+- Note you should always set a random `upseed` (integer) for each problem
   ```
-  x=x_rand(anonymous_student_id)
+  x=x_rand(anonymous_student_id, upseed=28)
   ```
 
 2) Input data:
@@ -59,7 +60,7 @@ pip install x_rand
 <problem>
 <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand
+from python_lib.x_rand import x_rand2
 
 data=[
   ['a','b'],
@@ -67,7 +68,7 @@ data=[
   [2,4]
 ]
 
-x=x_rand(anonymous_student_id)
+x=x_rand(anonymous_student_id, upseed=28)
 globals().update(x.select_random(data))
 
 ]]>
@@ -84,8 +85,9 @@ globals().update(x.select_random(data))
 
 ### Example Random multiple choice or checkbox problem
 1) Initialize an `x_rand` variable with the current student AID:
+- Note you should always set a random `upseed` (integer) for each problem
   ```
-  x=x_rand(anonymous_student_id)
+  x=x_rand(anonymous_student_id, upseed=99)
   ```
 
 2) Input data:
@@ -126,7 +128,7 @@ globals().update(x.select_random(data))
 <problem>
 <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand
+from python_lib.x_rand import x_rand2
 
 data= [
     ["text", "correct"],
@@ -138,7 +140,7 @@ data= [
     ["4", "False"]
 ]
 
-x=x_rand(anonymous_student_id)
+x=x_rand(anonymous_student_id, upseed=99)
 globals().update(x.choices_random(data, correct_indicator='correct', n_true=1, n_total=4))
 
 ]]>
@@ -164,8 +166,9 @@ While not guaranteed to be unique, large enough lists with sufficient numbers of
 
 To fingerprint a problem.
 1) Initialize an `x_rand` variable with the current student AID:
+  - Note you should always set a random `upseed` (integer) for each problem
   ```
-  x=x_rand(anonymous_student_id)
+  x=x_rand(anonymous_student_id, upseed=100)
   ```
 
 2) Input data:
@@ -207,7 +210,7 @@ To fingerprint a problem.
 <problem>
  <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand
+from python_lib.x_rand import x_rand2
 
 females = [
     ["female"],
@@ -229,7 +232,7 @@ males = [
     ["Ahmed"]
 ]
 
-x=x_rand(anonymous_student_id)
+x=x_rand(anonymous_student_id, upseed=100)
 globals().update(x.fingerprint(females, n_total=4))
 globals().update(x.fingerprint(males, n_total=4))
 
@@ -247,7 +250,7 @@ globals().update(x.fingerprint(males, n_total=4))
 ```
 
 ### Recreating Student data
-See `./example.py` and `./admin_example.py` for an example on how to recreate student data on your local machine.
+See `./examples` examples on how to recreate student data on your local machine.
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job.)

@@ -1,0 +1,7 @@
+id,username,name,email,language,location,year_of_birth,gender,level_of_education,mailing_address,goals,enrollment_mode,verification_status,last_login,date_joined,city,country
+195827,Brian_OSullivan,Brian O'Sullivan,brian.daniel.osullivan@gmail.com,,,None,,,,,audit,N/A,2017-07-12 17:29:39.185037+00:00,2017-06-01 13:44:02+00:00,,US
+179380,ConnorMakowski,Connor Makowski,conmak@mit.edu,,,None,None,None,None,None,audit,N/A,2020-12-07 16:20:05.994026+00:00,2017-02-08 17:14:24+00:00,None,
+184744,luisvasq,Luis Daniel Vásquez Peña,luisdanv@gmail.com,,,1984,m,b,,,audit,N/A,2020-07-03 18:44:29.257203+00:00,2017-03-01 20:55:27+00:00,,VE
+30898,mitx-tech-request,MITx Tech Team,mitx-et@mit.edu,,,None,None,None,None,None,audit,N/A,2020-11-23 13:07:57.149117+00:00,2014-06-24 11:59:07+00:00,None,
+195243,mroll,Matthew R Rollender,mroll@mit.edu,,,1997,m,,,,audit,N/A,2017-08-08 13:35:40.850317+00:00,2017-05-23 17:23:38+00:00,,US
+24814,sfrucht,Shira Fruchtman,shira@mit.edu,,,None,None,None,None,None,audit,N/A,2020-11-18 22:23:24.662737+00:00,2014-03-10 17:01:12+00:00,None,

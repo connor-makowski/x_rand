@@ -1,0 +1,35 @@
+<problem>
+ <script type="text/python">
+<![CDATA[
+
+from python_lib.x_rand2 import x_rand
+
+N09 = [
+    ["num"],
+    ["0"],
+    ["1"],
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"],
+    ["9"]
+]
+
+x=x_rand(anonymous_student_id, upseed=1)
+globals().update(x.fingerprint(N09, n_total=5))
+
+]]>
+</script>
+<multiplechoiceresponse>
+  <label>aid: $anonymous_student_id <br/><br/>
+  $num_00$num_01$num_02$num_03$num_04</label>
+<description>Select a response below</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">No</choice>
+    <choice correct="true">Yes</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

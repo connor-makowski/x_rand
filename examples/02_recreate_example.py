@@ -1,4 +1,4 @@
-from x_rand import x_rand_admin
+from x_rand2 import x_rand_admin, x_rand
 from pprint import pp as print
 
 e1=[
@@ -27,7 +27,8 @@ e3 = [
     ["Sadef"]
 ]
 
-def randomization_process(x, aid):
+def randomization_process(aid):
+    x=x_rand(anonymous_student_id=aid, upseed=1)
     return {
         'aid': aid,
         'e1': x.select_random(e1),

@@ -1,1 +1,1 @@
-from x_rand import *
+import x_rand, x_rand2
