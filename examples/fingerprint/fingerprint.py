@@ -13,24 +13,15 @@ with open('data/profile_info.csv', 'r') as f:
 aids=profile_data.keys()
 
 # Copy your problem data here
-N09 = [
-    ["num"],
-    ["0"],
-    ["1"],
-    ["2"],
-    ["3"],
-    ["4"],
-    ["5"],
-    ["6"],
-    ["7"],
-    ["8"],
-    ["9"]
+alphanum = [
+    ["alphanum"],
+    ["0"],["1"],["2"],["3"],["4"],["5"],["6"],["7"],["8"],["9"],["A"],["B"],["C"],["D"],["E"],["F"],["G"],["H"],["I"],["J"],["K"],["L"],["M"],["N"],["O"],["P"],["Q"],["R"],["S"],["T"],["U"],["V"],["W"],["X"],["Y"],["Z"],
 ]
 
 # Put your randomization process in the following def
 def randomization_process(aid):
     x=x_rand(anonymous_student_id=aid, upseed=1)
-    out=x.fingerprint(N09, n_total=5)
+    out=x.fingerprint(alphanum, n_total=5)
     out['aid']=aid
     out['profile_data']=profile_data[aid]
     return out

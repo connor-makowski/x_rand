@@ -4,28 +4,18 @@
 
 from python_lib.x_rand2 import x_rand
 
-N09 = [
-    ["num"],
-    ["0"],
-    ["1"],
-    ["2"],
-    ["3"],
-    ["4"],
-    ["5"],
-    ["6"],
-    ["7"],
-    ["8"],
-    ["9"]
+alphanum = [
+    ["alphanum"],
+    ["0"],["1"],["2"],["3"],["4"],["5"],["6"],["7"],["8"],["9"],["A"],["B"],["C"],["D"],["E"],["F"],["G"],["H"],["I"],["J"],["K"],["L"],["M"],["N"],["O"],["P"],["Q"],["R"],["S"],["T"],["U"],["V"],["W"],["X"],["Y"],["Z"],
 ]
 
 x=x_rand(anonymous_student_id, upseed=1)
-globals().update(x.fingerprint(N09, n_total=5))
+globals().update(x.fingerprint(alphanum, n_total=5))
 
 ]]>
 </script>
 <multiplechoiceresponse>
-  <label>aid: $anonymous_student_id <br/><br/>
-  $num_00$num_01$num_02$num_03$num_04</label>
+  <label>Elon is planning to name his new child $alphanum_00$alphanum_01$alphanum_02$alphanum_03$alphanum_04. Do you approve?</label>
 <description>Select a response below</description>
 <choicegroup type="MultipleChoice">
     <choice correct="false">No</choice>
