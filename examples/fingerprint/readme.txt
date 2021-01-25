@@ -36,7 +36,7 @@
 
 2. Copy in your current course data into `path/to/fingerprint/data`
   - Rename your downloaded anon id csv file to `aids.csv`
-  - Rename your downloaded anon id csv file to `profile_info.csv`
+  - Rename your downloaded profile info csv file to `profile_info.csv`
 
 3. Copy your edX code to `path/to/fingerprint/fingerprint.edx`
 
