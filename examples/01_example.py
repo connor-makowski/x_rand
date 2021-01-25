@@ -26,7 +26,10 @@ e3 = [
     ["Sadef"]
 ]
 
-x=x_rand()
+# Note: edX automatically uses the current student's aid so you should not set this in edX.
+anonymous_student_id='0123456789abcdef'
+
+x=x_rand(anonymous_student_id, upseed=23145)
 
 globals().update(x.select_random(e1))
 globals().update(x.choices_random(e2, correct_indicator='correct'))

@@ -28,7 +28,7 @@ e3 = [
 ]
 
 def randomization_process(aid):
-    x=x_rand(anonymous_student_id=aid, upseed=1)
+    x=x_rand(anonymous_student_id=aid, upseed=23145)
     return {
         'aid': aid,
         'e1': x.select_random(e1),
