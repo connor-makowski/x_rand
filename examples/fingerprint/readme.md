@@ -23,7 +23,6 @@
   ```
 
 3. Setup the python fingerprint environment
-  - First time setup on unix/osx:
   ```
   pip3 install virtualenv
   python3 -m virtualenv venv
@@ -34,7 +33,6 @@
 
 # Run the code after initial setup:
 1. Navigate into the fingerprint repository and activate your virtualenv
-  - On unix/osx
   ```
   cd ~/x_rand/examples/fingerprint
   source venv/bin/activate
