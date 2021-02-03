@@ -44,11 +44,11 @@
   - Move `aids.csv` and `profile_info.csv` to `~/x_rand/examples/fingerprint/data`
     - If you are using WSL, the `~` will not be easily accessable.
       - Your Root WSL system can be found in your file explorer at `\\wsl$`
-      - The `~` character represents your user data at `\\wsl$` -> `Ubuntu` -> `home` -> `<your username>`
+      - The `~` character represents your user data at `\\wsl$` -> `<your linux distribution>` -> `home` -> `<your username>`
 
 3. (Optional) Copy your edX code to `~/x_rand/examples/fingerprint/fingerprint.edx`
 
-4. Copy your problem data into `path/to/fingerprint/fingerprint.py`:
+4. Copy your problem data into `~/x_rand/examples/fingerprint/fingerprint.py`:
   - Note: You can not copy your code exactly.
   - Note: Make sure to follow the `#` comments in `fingerprint.py`
 
