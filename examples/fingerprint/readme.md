@@ -38,7 +38,7 @@
   source venv/bin/activate
   ```
 
-2. Download and copy in your current course data into `path/to/fingerprint/data`
+2. Download and copy in your current course data into `~/x_rand/examples/fingerprint/data`
   - Download anonymous_student_ids.csv and rename the file to `aids.csv`
   - Download profile_information.csv and rename the file to `profile_info.csv`
   - Move `aids.csv` and `profile_info.csv` to `~/x_rand/examples/fingerprint/data`
