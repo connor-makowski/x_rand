@@ -183,6 +183,7 @@ class utils:
 
         ```
         x=str({'a':1})
+        print(hash(x))
         ```
 
         Would consistently return:

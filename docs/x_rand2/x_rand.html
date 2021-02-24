@@ -336,20 +336,29 @@ class x_rand_admin:
         Example:
 
         ```
-        # DATA HERE
+        # YOUR DATA HERE
+        alphanum = [
+            [&#34;alphanum&#34;],
+            [&#34;0&#34;],[&#34;1&#34;],[&#34;2&#34;],[&#34;3&#34;],[&#34;4&#34;],[&#34;5&#34;],[&#34;6&#34;],[&#34;7&#34;],[&#34;8&#34;],[&#34;9&#34;],[&#34;A&#34;],[&#34;B&#34;],[&#34;C&#34;],[&#34;D&#34;],[&#34;E&#34;],[&#34;F&#34;],[&#34;G&#34;],[&#34;H&#34;],[&#34;I&#34;],[&#34;J&#34;],[&#34;K&#34;],[&#34;L&#34;],[&#34;M&#34;],[&#34;N&#34;],[&#34;O&#34;],[&#34;P&#34;],[&#34;Q&#34;],[&#34;R&#34;],[&#34;S&#34;],[&#34;T&#34;],[&#34;U&#34;],[&#34;V&#34;],[&#34;W&#34;],[&#34;X&#34;],[&#34;Y&#34;],[&#34;Z&#34;],
+        ]
 
         # Functor
-        def randomization_process(x, aid):
-            return {
-                &#39;aid&#39;: aid,
-                &#39;e1&#39;: x.select_random(e1),
-                &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
-                &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+        def randomization_process(aid):
+            # Don&#39;t mess with this. It is just for getting aids and profile data in the output.
+            out={
+                &#39;aid&#39;:aid,
+                &#39;profile_data&#39;:profile_data[aid]
             }
+            # Remember: Update your upseed
+            x=x_rand(anonymous_student_id=aid, upseed=1)
+            # All of your randomization code used in `globals.update` should go below.
+            # Note: replace each globals.update with out.update
+            out.update(x.fingerprint(alphanum, n_total=5))
+
+            return out
 
         aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
         output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
-
         ```
         &#34;&#34;&#34;
         return [functor(aid=aid) for aid in aids]</code></pre>
@@ -1281,20 +1290,29 @@ print(a, b)
         Example:
 
         ```
-        # DATA HERE
+        # YOUR DATA HERE
+        alphanum = [
+            [&#34;alphanum&#34;],
+            [&#34;0&#34;],[&#34;1&#34;],[&#34;2&#34;],[&#34;3&#34;],[&#34;4&#34;],[&#34;5&#34;],[&#34;6&#34;],[&#34;7&#34;],[&#34;8&#34;],[&#34;9&#34;],[&#34;A&#34;],[&#34;B&#34;],[&#34;C&#34;],[&#34;D&#34;],[&#34;E&#34;],[&#34;F&#34;],[&#34;G&#34;],[&#34;H&#34;],[&#34;I&#34;],[&#34;J&#34;],[&#34;K&#34;],[&#34;L&#34;],[&#34;M&#34;],[&#34;N&#34;],[&#34;O&#34;],[&#34;P&#34;],[&#34;Q&#34;],[&#34;R&#34;],[&#34;S&#34;],[&#34;T&#34;],[&#34;U&#34;],[&#34;V&#34;],[&#34;W&#34;],[&#34;X&#34;],[&#34;Y&#34;],[&#34;Z&#34;],
+        ]
 
         # Functor
-        def randomization_process(x, aid):
-            return {
-                &#39;aid&#39;: aid,
-                &#39;e1&#39;: x.select_random(e1),
-                &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
-                &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+        def randomization_process(aid):
+            # Don&#39;t mess with this. It is just for getting aids and profile data in the output.
+            out={
+                &#39;aid&#39;:aid,
+                &#39;profile_data&#39;:profile_data[aid]
             }
+            # Remember: Update your upseed
+            x=x_rand(anonymous_student_id=aid, upseed=1)
+            # All of your randomization code used in `globals.update` should go below.
+            # Note: replace each globals.update with out.update
+            out.update(x.fingerprint(alphanum, n_total=5))
+
+            return out
 
         aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
         output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
-
         ```
         &#34;&#34;&#34;
         return [functor(aid=aid) for aid in aids]</code></pre>
@@ -1327,20 +1345,29 @@ print(a, b)
 </li>
 </ul>
 <p>Example:</p>
-<pre><code># DATA HERE
+<pre><code># YOUR DATA HERE
+alphanum = [
+    [&quot;alphanum&quot;],
+    [&quot;0&quot;],[&quot;1&quot;],[&quot;2&quot;],[&quot;3&quot;],[&quot;4&quot;],[&quot;5&quot;],[&quot;6&quot;],[&quot;7&quot;],[&quot;8&quot;],[&quot;9&quot;],[&quot;A&quot;],[&quot;B&quot;],[&quot;C&quot;],[&quot;D&quot;],[&quot;E&quot;],[&quot;F&quot;],[&quot;G&quot;],[&quot;H&quot;],[&quot;I&quot;],[&quot;J&quot;],[&quot;K&quot;],[&quot;L&quot;],[&quot;M&quot;],[&quot;N&quot;],[&quot;O&quot;],[&quot;P&quot;],[&quot;Q&quot;],[&quot;R&quot;],[&quot;S&quot;],[&quot;T&quot;],[&quot;U&quot;],[&quot;V&quot;],[&quot;W&quot;],[&quot;X&quot;],[&quot;Y&quot;],[&quot;Z&quot;],
+]
 
 # Functor
-def randomization_process(x, aid):
-    return {
-        'aid': aid,
-        'e1': x.select_random(e1),
-        'e2': x.choices_random(e2, correct_indicator='correct'),
-        'e3': x.fingerprint(e3, n_total=3),
+def randomization_process(aid):
+    # Don't mess with this. It is just for getting aids and profile data in the output.
+    out={
+        'aid':aid,
+        'profile_data':profile_data[aid]
     }
+    # Remember: Update your upseed
+    x=x_rand(anonymous_student_id=aid, upseed=1)
+    # All of your randomization code used in &lt;code&gt;globals.update&lt;/code&gt; should go below.
+    # Note: replace each globals.update with out.update
+    out.update(x.fingerprint(alphanum, n_total=5))
+
+    return out
 
 aids=['staff','0123456789abcdef','0123456789abcde0']
 output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
-
 </code></pre></div>
 <details class="source">
 <summary>
@@ -1367,20 +1394,29 @@ output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
     Example:
 
     ```
-    # DATA HERE
+    # YOUR DATA HERE
+    alphanum = [
+        [&#34;alphanum&#34;],
+        [&#34;0&#34;],[&#34;1&#34;],[&#34;2&#34;],[&#34;3&#34;],[&#34;4&#34;],[&#34;5&#34;],[&#34;6&#34;],[&#34;7&#34;],[&#34;8&#34;],[&#34;9&#34;],[&#34;A&#34;],[&#34;B&#34;],[&#34;C&#34;],[&#34;D&#34;],[&#34;E&#34;],[&#34;F&#34;],[&#34;G&#34;],[&#34;H&#34;],[&#34;I&#34;],[&#34;J&#34;],[&#34;K&#34;],[&#34;L&#34;],[&#34;M&#34;],[&#34;N&#34;],[&#34;O&#34;],[&#34;P&#34;],[&#34;Q&#34;],[&#34;R&#34;],[&#34;S&#34;],[&#34;T&#34;],[&#34;U&#34;],[&#34;V&#34;],[&#34;W&#34;],[&#34;X&#34;],[&#34;Y&#34;],[&#34;Z&#34;],
+    ]
 
     # Functor
-    def randomization_process(x, aid):
-        return {
-            &#39;aid&#39;: aid,
-            &#39;e1&#39;: x.select_random(e1),
-            &#39;e2&#39;: x.choices_random(e2, correct_indicator=&#39;correct&#39;),
-            &#39;e3&#39;: x.fingerprint(e3, n_total=3),
+    def randomization_process(aid):
+        # Don&#39;t mess with this. It is just for getting aids and profile data in the output.
+        out={
+            &#39;aid&#39;:aid,
+            &#39;profile_data&#39;:profile_data[aid]
         }
+        # Remember: Update your upseed
+        x=x_rand(anonymous_student_id=aid, upseed=1)
+        # All of your randomization code used in `globals.update` should go below.
+        # Note: replace each globals.update with out.update
+        out.update(x.fingerprint(alphanum, n_total=5))
+
+        return out
 
     aids=[&#39;staff&#39;,&#39;0123456789abcdef&#39;,&#39;0123456789abcde0&#39;]
     output=x_rand_admin().recreate(functor=randomization_process, aids=aids)
-
     ```
     &#34;&#34;&#34;
     return [functor(aid=aid) for aid in aids]</code></pre>
