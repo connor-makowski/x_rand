@@ -9,7 +9,8 @@ with open('data/aids.csv', 'r') as f:
 with open('data/profile_info.csv', 'r') as f:
     profile_data={aids_data[i['id']]['Anonymized User ID']:i for i in csv.DictReader(f)}
 
-aids=profile_data.keys()
+profile_data_backup={i['Anonymized User ID']:{**i,'Note':'User not found in profile data'} for i in aids_data.values()}
+aids=profile_data_backup.keys()
 
 # Your Problem Data Goes Here
 # Note: Do not put your randomization code here. This is just for data. See the randomization_process below.
@@ -25,7 +26,7 @@ def randomization_process(aid):
     # Don't mess with this. It is just for getting aids and profile data in the output.
     out={
         'aid':aid,
-        'profile_data':profile_data[aid]
+        'profile_data':profile_data.get(aid, profile_data_backup.get(aid))
     }
     # Remember: Update your upseed
     x=x_rand(anonymous_student_id=aid, upseed=1)
