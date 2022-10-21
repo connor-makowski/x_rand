@@ -68,7 +68,7 @@ pip install x_rand
 <problem>
 <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand2
+from python_lib.x_rand2 import x_rand
 
 data=[
   ['a','b'],
@@ -136,7 +136,7 @@ globals().update(x.select_random(data))
 <problem>
 <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand2
+from python_lib.x_rand2 import x_rand
 
 data= [
     ["text", "correct"],
@@ -218,7 +218,7 @@ To fingerprint a problem.
 <problem>
  <script type="text/python">
 <![CDATA[
-from python_lib.x_rand import x_rand2
+from python_lib.x_rand2 import x_rand
 
 females = [
     ["female"],
