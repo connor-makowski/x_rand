@@ -1,6 +1,6 @@
 -r ./requirements.txt
 bleach==3.1.5
-certifi==2020.6.20
+certifi==2022.12.7
 cffi==1.15.1
 chardet==3.0.4
 colorama==0.4.3
